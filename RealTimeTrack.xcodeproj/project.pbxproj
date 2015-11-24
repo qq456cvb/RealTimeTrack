@@ -1,0 +1,536 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9FC581621C047D40002461AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC581611C047D40002461AE /* main.m */; };
+		9FC581651C047D40002461AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC581641C047D40002461AE /* AppDelegate.m */; };
+		9FC581681C047D40002461AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC581671C047D40002461AE /* ViewController.m */; };
+		9FC5816B1C047D40002461AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FC581691C047D40002461AE /* Main.storyboard */; };
+		9FC5816E1C047D40002461AE /* RealTimeTrack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FC5816C1C047D40002461AE /* RealTimeTrack.xcdatamodeld */; };
+		9FC581701C047D40002461AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC5816F1C047D40002461AE /* Assets.xcassets */; };
+		9FC581731C047D40002461AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FC581711C047D40002461AE /* LaunchScreen.storyboard */; };
+		9FC5817E1C047D40002461AE /* RealTimeTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC5817D1C047D40002461AE /* RealTimeTrackTests.m */; };
+		9FC581891C047D40002461AE /* RealTimeTrackUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC581881C047D40002461AE /* RealTimeTrackUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9FC5817A1C047D40002461AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FC581551C047D40002461AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9FC5815C1C047D40002461AE;
+			remoteInfo = RealTimeTrack;
+		};
+		9FC581851C047D40002461AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FC581551C047D40002461AE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9FC5815C1C047D40002461AE;
+			remoteInfo = RealTimeTrack;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9FC5815D1C047D40002461AE /* RealTimeTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealTimeTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FC581611C047D40002461AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9FC581631C047D40002461AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9FC581641C047D40002461AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9FC581661C047D40002461AE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9FC581671C047D40002461AE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9FC5816A1C047D40002461AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9FC5816D1C047D40002461AE /* RealTimeTrack.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RealTimeTrack.xcdatamodel; sourceTree = "<group>"; };
+		9FC5816F1C047D40002461AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9FC581721C047D40002461AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9FC581741C047D40002461AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FC581791C047D40002461AE /* RealTimeTrackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RealTimeTrackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FC5817D1C047D40002461AE /* RealTimeTrackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTimeTrackTests.m; sourceTree = "<group>"; };
+		9FC5817F1C047D40002461AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FC581841C047D40002461AE /* RealTimeTrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RealTimeTrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FC581881C047D40002461AE /* RealTimeTrackUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTimeTrackUITests.m; sourceTree = "<group>"; };
+		9FC5818A1C047D40002461AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9FC5815A1C047D40002461AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FC581761C047D40002461AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FC581811C047D40002461AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9FC581541C047D40002461AE = {
+			isa = PBXGroup;
+			children = (
+				9FC5815F1C047D40002461AE /* RealTimeTrack */,
+				9FC5817C1C047D40002461AE /* RealTimeTrackTests */,
+				9FC581871C047D40002461AE /* RealTimeTrackUITests */,
+				9FC5815E1C047D40002461AE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9FC5815E1C047D40002461AE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9FC5815D1C047D40002461AE /* RealTimeTrack.app */,
+				9FC581791C047D40002461AE /* RealTimeTrackTests.xctest */,
+				9FC581841C047D40002461AE /* RealTimeTrackUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9FC5815F1C047D40002461AE /* RealTimeTrack */ = {
+			isa = PBXGroup;
+			children = (
+				9FC581631C047D40002461AE /* AppDelegate.h */,
+				9FC581641C047D40002461AE /* AppDelegate.m */,
+				9FC581661C047D40002461AE /* ViewController.h */,
+				9FC581671C047D40002461AE /* ViewController.m */,
+				9FC581691C047D40002461AE /* Main.storyboard */,
+				9FC5816F1C047D40002461AE /* Assets.xcassets */,
+				9FC581711C047D40002461AE /* LaunchScreen.storyboard */,
+				9FC581741C047D40002461AE /* Info.plist */,
+				9FC5816C1C047D40002461AE /* RealTimeTrack.xcdatamodeld */,
+				9FC581601C047D40002461AE /* Supporting Files */,
+			);
+			path = RealTimeTrack;
+			sourceTree = "<group>";
+		};
+		9FC581601C047D40002461AE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9FC581611C047D40002461AE /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9FC5817C1C047D40002461AE /* RealTimeTrackTests */ = {
+			isa = PBXGroup;
+			children = (
+				9FC5817D1C047D40002461AE /* RealTimeTrackTests.m */,
+				9FC5817F1C047D40002461AE /* Info.plist */,
+			);
+			path = RealTimeTrackTests;
+			sourceTree = "<group>";
+		};
+		9FC581871C047D40002461AE /* RealTimeTrackUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9FC581881C047D40002461AE /* RealTimeTrackUITests.m */,
+				9FC5818A1C047D40002461AE /* Info.plist */,
+			);
+			path = RealTimeTrackUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9FC5815C1C047D40002461AE /* RealTimeTrack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9FC5818D1C047D40002461AE /* Build configuration list for PBXNativeTarget "RealTimeTrack" */;
+			buildPhases = (
+				9FC581591C047D40002461AE /* Sources */,
+				9FC5815A1C047D40002461AE /* Frameworks */,
+				9FC5815B1C047D40002461AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RealTimeTrack;
+			productName = RealTimeTrack;
+			productReference = 9FC5815D1C047D40002461AE /* RealTimeTrack.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9FC581781C047D40002461AE /* RealTimeTrackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9FC581901C047D40002461AE /* Build configuration list for PBXNativeTarget "RealTimeTrackTests" */;
+			buildPhases = (
+				9FC581751C047D40002461AE /* Sources */,
+				9FC581761C047D40002461AE /* Frameworks */,
+				9FC581771C047D40002461AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9FC5817B1C047D40002461AE /* PBXTargetDependency */,
+			);
+			name = RealTimeTrackTests;
+			productName = RealTimeTrackTests;
+			productReference = 9FC581791C047D40002461AE /* RealTimeTrackTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9FC581831C047D40002461AE /* RealTimeTrackUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9FC581931C047D40002461AE /* Build configuration list for PBXNativeTarget "RealTimeTrackUITests" */;
+			buildPhases = (
+				9FC581801C047D40002461AE /* Sources */,
+				9FC581811C047D40002461AE /* Frameworks */,
+				9FC581821C047D40002461AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9FC581861C047D40002461AE /* PBXTargetDependency */,
+			);
+			name = RealTimeTrackUITests;
+			productName = RealTimeTrackUITests;
+			productReference = 9FC581841C047D40002461AE /* RealTimeTrackUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9FC581551C047D40002461AE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = Neil;
+				TargetAttributes = {
+					9FC5815C1C047D40002461AE = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					9FC581781C047D40002461AE = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 9FC5815C1C047D40002461AE;
+					};
+					9FC581831C047D40002461AE = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 9FC5815C1C047D40002461AE;
+					};
+				};
+			};
+			buildConfigurationList = 9FC581581C047D40002461AE /* Build configuration list for PBXProject "RealTimeTrack" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9FC581541C047D40002461AE;
+			productRefGroup = 9FC5815E1C047D40002461AE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9FC5815C1C047D40002461AE /* RealTimeTrack */,
+				9FC581781C047D40002461AE /* RealTimeTrackTests */,
+				9FC581831C047D40002461AE /* RealTimeTrackUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9FC5815B1C047D40002461AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FC581731C047D40002461AE /* LaunchScreen.storyboard in Resources */,
+				9FC581701C047D40002461AE /* Assets.xcassets in Resources */,
+				9FC5816B1C047D40002461AE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FC581771C047D40002461AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FC581821C047D40002461AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9FC581591C047D40002461AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FC581681C047D40002461AE /* ViewController.m in Sources */,
+				9FC581651C047D40002461AE /* AppDelegate.m in Sources */,
+				9FC5816E1C047D40002461AE /* RealTimeTrack.xcdatamodeld in Sources */,
+				9FC581621C047D40002461AE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FC581751C047D40002461AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FC5817E1C047D40002461AE /* RealTimeTrackTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FC581801C047D40002461AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FC581891C047D40002461AE /* RealTimeTrackUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9FC5817B1C047D40002461AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9FC5815C1C047D40002461AE /* RealTimeTrack */;
+			targetProxy = 9FC5817A1C047D40002461AE /* PBXContainerItemProxy */;
+		};
+		9FC581861C047D40002461AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9FC5815C1C047D40002461AE /* RealTimeTrack */;
+			targetProxy = 9FC581851C047D40002461AE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9FC581691C047D40002461AE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9FC5816A1C047D40002461AE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9FC581711C047D40002461AE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9FC581721C047D40002461AE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9FC5818B1C047D40002461AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9FC5818C1C047D40002461AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9FC5818E1C047D40002461AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RealTimeTrack/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YY.RealTimeTrack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9FC5818F1C047D40002461AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RealTimeTrack/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YY.RealTimeTrack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9FC581911C047D40002461AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RealTimeTrackTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YY.RealTimeTrackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RealTimeTrack.app/RealTimeTrack";
+			};
+			name = Debug;
+		};
+		9FC581921C047D40002461AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RealTimeTrackTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YY.RealTimeTrackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RealTimeTrack.app/RealTimeTrack";
+			};
+			name = Release;
+		};
+		9FC581941C047D40002461AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = RealTimeTrackUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YY.RealTimeTrackUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = RealTimeTrack;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		9FC581951C047D40002461AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = RealTimeTrackUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = YY.RealTimeTrackUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = RealTimeTrack;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9FC581581C047D40002461AE /* Build configuration list for PBXProject "RealTimeTrack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FC5818B1C047D40002461AE /* Debug */,
+				9FC5818C1C047D40002461AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9FC5818D1C047D40002461AE /* Build configuration list for PBXNativeTarget "RealTimeTrack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FC5818E1C047D40002461AE /* Debug */,
+				9FC5818F1C047D40002461AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9FC581901C047D40002461AE /* Build configuration list for PBXNativeTarget "RealTimeTrackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FC581911C047D40002461AE /* Debug */,
+				9FC581921C047D40002461AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9FC581931C047D40002461AE /* Build configuration list for PBXNativeTarget "RealTimeTrackUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FC581941C047D40002461AE /* Debug */,
+				9FC581951C047D40002461AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9FC5816C1C047D40002461AE /* RealTimeTrack.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9FC5816D1C047D40002461AE /* RealTimeTrack.xcdatamodel */,
+			);
+			currentVersion = 9FC5816D1C047D40002461AE /* RealTimeTrack.xcdatamodel */;
+			path = RealTimeTrack.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 9FC581551C047D40002461AE /* Project object */;
+}
