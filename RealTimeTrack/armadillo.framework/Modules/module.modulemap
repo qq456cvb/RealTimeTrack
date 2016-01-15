@@ -1,0 +1,6 @@
+framework module armadillo {
+  umbrella header "armadillo.h"
+
+  export *
+  module * { export * }
+}

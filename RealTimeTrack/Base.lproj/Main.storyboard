@@ -1,25 +1,121 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rDj-dc-M1K">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="TGl-IA-L2Z">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="rDj-dc-M1K" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="Fvw-CF-wcF"/>
+                        <viewControllerLayoutGuide type="bottom" id="KUb-7w-y1y"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="OFi-lH-P5o">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLb-lo-nSp">
+                                <rect key="frame" x="120" y="532" width="33" height="30"/>
+                                <state key="normal" title="Take"/>
+                                <connections>
+                                    <action selector="takePhoto:" destination="rDj-dc-M1K" eventType="touchUpInside" id="wOa-Uh-bF0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dvh-Jc-CbJ">
+                                <rect key="frame" x="441" y="532" width="39" height="30"/>
+                                <state key="normal" title="Track"/>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="241" y="532" width="39" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="toggleMode:" destination="rDj-dc-M1K" eventType="touchUpInside" id="oZ3-TO-OZ0"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pdg-7b-Bge">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Pdg-7b-Bge" secondAttribute="height" multiplier="4:3" id="Zga-vN-Jjp"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Zga-vN-Jjp"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="Zga-vN-Jjp"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U69-Og-p60">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="U69-Og-p60" firstAttribute="width" secondItem="OFi-lH-P5o" secondAttribute="width" id="1mu-t0-7DS"/>
+                            <constraint firstItem="MLb-lo-nSp" firstAttribute="top" secondItem="Pdg-7b-Bge" secondAttribute="bottom" constant="20" id="4kq-ze-Uf7"/>
+                            <constraint firstItem="MLb-lo-nSp" firstAttribute="leading" secondItem="OFi-lH-P5o" secondAttribute="leadingMargin" constant="100" id="DKn-3V-3ts"/>
+                            <constraint firstItem="U69-Og-p60" firstAttribute="centerX" secondItem="OFi-lH-P5o" secondAttribute="centerX" id="IXc-dT-ifv"/>
+                            <constraint firstItem="U69-Og-p60" firstAttribute="leading" secondItem="OFi-lH-P5o" secondAttribute="leadingMargin" constant="-20" id="Tuf-ad-ULu"/>
+                            <constraint firstItem="dvh-Jc-CbJ" firstAttribute="centerY" secondItem="MLb-lo-nSp" secondAttribute="centerY" id="YvP-Du-ohR"/>
+                            <constraint firstItem="U69-Og-p60" firstAttribute="width" secondItem="U69-Og-p60" secondAttribute="height" multiplier="4:3" id="bwV-E2-Wfn"/>
+                            <constraint firstItem="Pdg-7b-Bge" firstAttribute="width" secondItem="OFi-lH-P5o" secondAttribute="width" id="g0H-b8-X4S"/>
+                            <constraint firstItem="KUb-7w-y1y" firstAttribute="top" secondItem="U69-Og-p60" secondAttribute="bottom" constant="8" symbolic="YES" id="oOZ-4R-SiC"/>
+                            <constraint firstItem="Pdg-7b-Bge" firstAttribute="centerX" secondItem="OFi-lH-P5o" secondAttribute="centerX" id="ore-3w-5PK"/>
+                            <constraint firstItem="Pdg-7b-Bge" firstAttribute="top" secondItem="Fvw-CF-wcF" secondAttribute="bottom" constant="8" symbolic="YES" id="q1L-Y8-tYk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dvh-Jc-CbJ" secondAttribute="trailing" constant="100" id="uWZ-vj-qoz"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="U69-Og-p60"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="oOZ-4R-SiC"/>
+                                <exclude reference="1mu-t0-7DS"/>
+                                <exclude reference="IXc-dT-ifv"/>
+                                <exclude reference="Tuf-ad-ULu"/>
+                                <exclude reference="bwV-E2-Wfn"/>
+                                <exclude reference="g0H-b8-X4S"/>
+                                <exclude reference="ore-3w-5PK"/>
+                                <exclude reference="q1L-Y8-tYk"/>
+                                <exclude reference="4kq-ze-Uf7"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <include reference="g0H-b8-X4S"/>
+                                <include reference="ore-3w-5PK"/>
+                                <include reference="q1L-Y8-tYk"/>
+                                <include reference="4kq-ze-Uf7"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="U69-Og-p60"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="oOZ-4R-SiC"/>
+                                <include reference="1mu-t0-7DS"/>
+                                <include reference="IXc-dT-ifv"/>
+                                <include reference="Tuf-ad-ULu"/>
+                                <include reference="bwV-E2-Wfn"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="Pdg-7b-Bge" id="RWb-9K-hVR"/>
+                        <outlet property="templateView" destination="U69-Og-p60" id="VUK-fn-25j"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZxW-qY-pvg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
 </document>

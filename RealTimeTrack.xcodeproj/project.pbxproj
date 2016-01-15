@@ -7,15 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F05E4991C07EFEE007193C8 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F05E4981C07EFEE007193C8 /* opencv2.framework */; };
+		9F05E4BD1C07F738007193C8 /* LaplacianMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4B91C07F738007193C8 /* LaplacianMesh.cpp */; };
+		9F05E4BE1C07F738007193C8 /* TriangleMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4BB1C07F738007193C8 /* TriangleMesh.cpp */; };
+		9F05E4C91C07F818007193C8 /* InlierMatchTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4C51C07F818007193C8 /* InlierMatchTracker.cpp */; };
+		9F05E4CA1C07F818007193C8 /* LKPointTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4C71C07F818007193C8 /* LKPointTracker.cpp */; };
+		9F05E4D01C07F83B007193C8 /* DUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4CC1C07F83B007193C8 /* DUtils.cpp */; };
+		9F05E4D11C07F83B007193C8 /* Visualization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4CE1C07F83B007193C8 /* Visualization.cpp */; };
+		9F05E4E11C07F855007193C8 /* EqualConstrFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4D31C07F855007193C8 /* EqualConstrFunction.cpp */; };
+		9F05E4E21C07F855007193C8 /* EqualConstrOptimize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4D51C07F855007193C8 /* EqualConstrOptimize.cpp */; };
+		9F05E4E31C07F855007193C8 /* Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4D71C07F855007193C8 /* Function.cpp */; };
+		9F05E4E41C07F855007193C8 /* IneqConstrFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4D91C07F855007193C8 /* IneqConstrFunction.cpp */; };
+		9F05E4E51C07F855007193C8 /* IneqConstrOptimize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4DB1C07F855007193C8 /* IneqConstrOptimize.cpp */; };
+		9F05E4E61C07F855007193C8 /* LinearAlgebraUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4DD1C07F855007193C8 /* LinearAlgebraUtils.cpp */; };
+		9F05E4E71C07F855007193C8 /* ObjectiveFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4DF1C07F855007193C8 /* ObjectiveFunction.cpp */; };
+		9F05E4EB1C07F867007193C8 /* Reconstruction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4E91C07F867007193C8 /* Reconstruction.cpp */; };
+		9F05E4EE1C07F86F007193C8 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4EC1C07F86F007193C8 /* Camera.cpp */; };
+		9F05E4FA1C07FB9C007193C8 /* KeypointMatcher3D2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4F71C07FB9C007193C8 /* KeypointMatcher3D2D.cpp */; };
+		9F05E4FF1C083F9C007193C8 /* Data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4FD1C083F9C007193C8 /* Data.cpp */; };
+		9F6523D31C0EA76B0094641A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523D21C0EA76B0094641A /* Accelerate.framework */; };
+		9F6523D51C0EA7B50094641A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523D41C0EA7B50094641A /* CoreVideo.framework */; };
+		9F6523D71C0EA7BC0094641A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523D61C0EA7BC0094641A /* AVFoundation.framework */; };
+		9F6523D91C0EA7C20094641A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523D81C0EA7C20094641A /* AssetsLibrary.framework */; };
+		9F6523DB1C0EA7C80094641A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523DA1C0EA7C80094641A /* CoreMedia.framework */; };
+		9F6523DE1C0EA7D20094641A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523DC1C0EA7D20094641A /* CoreGraphics.framework */; };
+		9F6523DF1C0EA7D20094641A /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523DD1C0EA7D20094641A /* CoreImage.framework */; };
+		9F6523E31C0EA7EA0094641A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523E11C0EA7EA0094641A /* UIKit.framework */; };
+		9F6523E51C0EA7F50094641A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523E41C0EA7F50094641A /* QuartzCore.framework */; };
+		9F6523E81C0ECF220094641A /* BriskKeypointMatcher3D2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6523E61C0ECF220094641A /* BriskKeypointMatcher3D2D.cpp */; };
+		9F6523EB1C0EDCDC0094641A /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6523E91C0EDCDC0094641A /* Timer.cpp */; };
+		9F726E1B1C1170BF002CFBA3 /* armadillo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F726C601C116B6C002CFBA3 /* armadillo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9F726E1F1C118648002CFBA3 /* MatByteConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F726E1D1C118648002CFBA3 /* MatByteConverter.cpp */; };
+		9F79DCBB1C13406100435D0D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79DCBA1C13406100435D0D /* Foundation.framework */; };
+		9FAD39C21C1EF537007A9BAD /* SoftConstrFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD39C01C1EF537007A9BAD /* SoftConstrFunction.cpp */; };
+		9FAD39C51C1F1383007A9BAD /* SoftConstrOptimize.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD39C31C1F1383007A9BAD /* SoftConstrOptimize.cpp */; };
 		9FC581621C047D40002461AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC581611C047D40002461AE /* main.m */; };
 		9FC581651C047D40002461AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC581641C047D40002461AE /* AppDelegate.m */; };
-		9FC581681C047D40002461AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC581671C047D40002461AE /* ViewController.m */; };
+		9FC581681C047D40002461AE /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9FC581671C047D40002461AE /* ViewController.mm */; };
 		9FC5816B1C047D40002461AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FC581691C047D40002461AE /* Main.storyboard */; };
 		9FC5816E1C047D40002461AE /* RealTimeTrack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FC5816C1C047D40002461AE /* RealTimeTrack.xcdatamodeld */; };
 		9FC581701C047D40002461AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FC5816F1C047D40002461AE /* Assets.xcassets */; };
 		9FC581731C047D40002461AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FC581711C047D40002461AE /* LaunchScreen.storyboard */; };
 		9FC5817E1C047D40002461AE /* RealTimeTrackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC5817D1C047D40002461AE /* RealTimeTrackTests.m */; };
 		9FC581891C047D40002461AE /* RealTimeTrackUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC581881C047D40002461AE /* RealTimeTrackUITests.m */; };
+		9FE15E111C3CB0010073BDF5 /* ImageChoose.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FE15E0F1C3CB0010073BDF5 /* ImageChoose.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,13 +70,84 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9F726E1C1C1170BF002CFBA3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9F726E1B1C1170BF002CFBA3 /* armadillo.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		9F05E4981C07EFEE007193C8 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = "../../graduation-design/opencv2.framework"; sourceTree = "<group>"; };
+		9F05E4B91C07F738007193C8 /* LaplacianMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LaplacianMesh.cpp; path = "../../../graduation-design/deformabletracker/src/Mesh/LaplacianMesh.cpp"; sourceTree = "<group>"; };
+		9F05E4BA1C07F738007193C8 /* LaplacianMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaplacianMesh.h; path = "../../../graduation-design/deformabletracker/src/Mesh/LaplacianMesh.h"; sourceTree = "<group>"; };
+		9F05E4BB1C07F738007193C8 /* TriangleMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriangleMesh.cpp; path = "../../../graduation-design/deformabletracker/src/Mesh/TriangleMesh.cpp"; sourceTree = "<group>"; };
+		9F05E4BC1C07F738007193C8 /* TriangleMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TriangleMesh.h; path = "../../../graduation-design/deformabletracker/src/Mesh/TriangleMesh.h"; sourceTree = "<group>"; };
+		9F05E4C51C07F818007193C8 /* InlierMatchTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InlierMatchTracker.cpp; path = "../../../graduation-design/deformabletracker/src/MatchTracker/InlierMatchTracker.cpp"; sourceTree = "<group>"; };
+		9F05E4C61C07F818007193C8 /* InlierMatchTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InlierMatchTracker.h; path = "../../../graduation-design/deformabletracker/src/MatchTracker/InlierMatchTracker.h"; sourceTree = "<group>"; };
+		9F05E4C71C07F818007193C8 /* LKPointTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LKPointTracker.cpp; path = "../../../graduation-design/deformabletracker/src/MatchTracker/LKPointTracker.cpp"; sourceTree = "<group>"; };
+		9F05E4C81C07F818007193C8 /* LKPointTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKPointTracker.h; path = "../../../graduation-design/deformabletracker/src/MatchTracker/LKPointTracker.h"; sourceTree = "<group>"; };
+		9F05E4CB1C07F83B007193C8 /* DefinedMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefinedMacros.h; path = "../../../graduation-design/deformabletracker/src/Utils/DefinedMacros.h"; sourceTree = "<group>"; };
+		9F05E4CC1C07F83B007193C8 /* DUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DUtils.cpp; path = "../../../graduation-design/deformabletracker/src/Utils/DUtils.cpp"; sourceTree = "<group>"; };
+		9F05E4CD1C07F83B007193C8 /* DUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DUtils.h; path = "../../../graduation-design/deformabletracker/src/Utils/DUtils.h"; sourceTree = "<group>"; };
+		9F05E4CE1C07F83B007193C8 /* Visualization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Visualization.cpp; path = "../../../graduation-design/deformabletracker/src/Utils/Visualization.cpp"; sourceTree = "<group>"; };
+		9F05E4CF1C07F83B007193C8 /* Visualization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Visualization.h; path = "../../../graduation-design/deformabletracker/src/Utils/Visualization.h"; sourceTree = "<group>"; };
+		9F05E4D31C07F855007193C8 /* EqualConstrFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EqualConstrFunction.cpp; path = "../../../graduation-design/deformabletracker/src/Linear/EqualConstrFunction.cpp"; sourceTree = "<group>"; };
+		9F05E4D41C07F855007193C8 /* EqualConstrFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EqualConstrFunction.h; path = "../../../graduation-design/deformabletracker/src/Linear/EqualConstrFunction.h"; sourceTree = "<group>"; };
+		9F05E4D51C07F855007193C8 /* EqualConstrOptimize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EqualConstrOptimize.cpp; path = "../../../graduation-design/deformabletracker/src/Linear/EqualConstrOptimize.cpp"; sourceTree = "<group>"; };
+		9F05E4D61C07F855007193C8 /* EqualConstrOptimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EqualConstrOptimize.h; path = "../../../graduation-design/deformabletracker/src/Linear/EqualConstrOptimize.h"; sourceTree = "<group>"; };
+		9F05E4D71C07F855007193C8 /* Function.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Function.cpp; path = "../../../graduation-design/deformabletracker/src/Linear/Function.cpp"; sourceTree = "<group>"; };
+		9F05E4D81C07F855007193C8 /* Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Function.h; path = "../../../graduation-design/deformabletracker/src/Linear/Function.h"; sourceTree = "<group>"; };
+		9F05E4D91C07F855007193C8 /* IneqConstrFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IneqConstrFunction.cpp; path = "../../../graduation-design/deformabletracker/src/Linear/IneqConstrFunction.cpp"; sourceTree = "<group>"; };
+		9F05E4DA1C07F855007193C8 /* IneqConstrFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IneqConstrFunction.h; path = "../../../graduation-design/deformabletracker/src/Linear/IneqConstrFunction.h"; sourceTree = "<group>"; };
+		9F05E4DB1C07F855007193C8 /* IneqConstrOptimize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = IneqConstrOptimize.cpp; path = "../../../graduation-design/deformabletracker/src/Linear/IneqConstrOptimize.cpp"; sourceTree = "<group>"; };
+		9F05E4DC1C07F855007193C8 /* IneqConstrOptimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IneqConstrOptimize.h; path = "../../../graduation-design/deformabletracker/src/Linear/IneqConstrOptimize.h"; sourceTree = "<group>"; };
+		9F05E4DD1C07F855007193C8 /* LinearAlgebraUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LinearAlgebraUtils.cpp; path = "../../../graduation-design/deformabletracker/src/Linear/LinearAlgebraUtils.cpp"; sourceTree = "<group>"; };
+		9F05E4DE1C07F855007193C8 /* LinearAlgebraUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinearAlgebraUtils.h; path = "../../../graduation-design/deformabletracker/src/Linear/LinearAlgebraUtils.h"; sourceTree = "<group>"; };
+		9F05E4DF1C07F855007193C8 /* ObjectiveFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ObjectiveFunction.cpp; path = "../../../graduation-design/deformabletracker/src/Linear/ObjectiveFunction.cpp"; sourceTree = "<group>"; };
+		9F05E4E01C07F855007193C8 /* ObjectiveFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectiveFunction.h; path = "../../../graduation-design/deformabletracker/src/Linear/ObjectiveFunction.h"; sourceTree = "<group>"; };
+		9F05E4E91C07F867007193C8 /* Reconstruction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Reconstruction.cpp; path = "../../../graduation-design/deformabletracker/src/Reconstruction.cpp"; sourceTree = "<group>"; };
+		9F05E4EA1C07F867007193C8 /* Reconstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reconstruction.h; path = "../../../graduation-design/deformabletracker/src/Reconstruction.h"; sourceTree = "<group>"; };
+		9F05E4EC1C07F86F007193C8 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = "../../../graduation-design/deformabletracker/src/Camera.cpp"; sourceTree = "<group>"; };
+		9F05E4ED1C07F86F007193C8 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = "../../../graduation-design/deformabletracker/src/Camera.h"; sourceTree = "<group>"; };
+		9F05E4F71C07FB9C007193C8 /* KeypointMatcher3D2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KeypointMatcher3D2D.cpp; path = "../../../graduation-design/deformabletracker/src/PointMatching/KeypointMatcher3D2D.cpp"; sourceTree = "<group>"; };
+		9F05E4F81C07FB9C007193C8 /* KeypointMatcher3D2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeypointMatcher3D2D.h; path = "../../../graduation-design/deformabletracker/src/PointMatching/KeypointMatcher3D2D.h"; sourceTree = "<group>"; };
+		9F05E4FD1C083F9C007193C8 /* Data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Data.cpp; sourceTree = "<group>"; };
+		9F05E4FE1C083F9C007193C8 /* Data.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Data.hpp; sourceTree = "<group>"; };
+		9F6523D21C0EA76B0094641A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		9F6523D41C0EA7B50094641A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		9F6523D61C0EA7BC0094641A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9F6523D81C0EA7C20094641A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		9F6523DA1C0EA7C80094641A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		9F6523DC1C0EA7D20094641A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9F6523DD1C0EA7D20094641A /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		9F6523E11C0EA7EA0094641A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9F6523E41C0EA7F50094641A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9F6523E61C0ECF220094641A /* BriskKeypointMatcher3D2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BriskKeypointMatcher3D2D.cpp; sourceTree = "<group>"; };
+		9F6523E71C0ECF220094641A /* BriskKeypointMatcher3D2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BriskKeypointMatcher3D2D.hpp; sourceTree = "<group>"; };
+		9F6523E91C0EDCDC0094641A /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
+		9F6523EA1C0EDCDC0094641A /* Timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
+		9F726C601C116B6C002CFBA3 /* armadillo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = armadillo.framework; path = RealTimeTrack/armadillo.framework; sourceTree = "<group>"; };
+		9F726E1D1C118648002CFBA3 /* MatByteConverter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MatByteConverter.cpp; sourceTree = "<group>"; };
+		9F726E1E1C118648002CFBA3 /* MatByteConverter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MatByteConverter.hpp; sourceTree = "<group>"; };
+		9F79DCBA1C13406100435D0D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9FAD39C01C1EF537007A9BAD /* SoftConstrFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoftConstrFunction.cpp; sourceTree = "<group>"; };
+		9FAD39C11C1EF537007A9BAD /* SoftConstrFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftConstrFunction.h; sourceTree = "<group>"; };
+		9FAD39C31C1F1383007A9BAD /* SoftConstrOptimize.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoftConstrOptimize.cpp; sourceTree = "<group>"; };
+		9FAD39C41C1F1383007A9BAD /* SoftConstrOptimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftConstrOptimize.h; sourceTree = "<group>"; };
 		9FC5815D1C047D40002461AE /* RealTimeTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealTimeTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC581611C047D40002461AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9FC581631C047D40002461AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9FC581641C047D40002461AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9FC581661C047D40002461AE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9FC581671C047D40002461AE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9FC581671C047D40002461AE /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		9FC5816A1C047D40002461AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9FC5816D1C047D40002461AE /* RealTimeTrack.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RealTimeTrack.xcdatamodel; sourceTree = "<group>"; };
 		9FC5816F1C047D40002461AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +159,8 @@
 		9FC581841C047D40002461AE /* RealTimeTrackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RealTimeTrackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FC581881C047D40002461AE /* RealTimeTrackUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealTimeTrackUITests.m; sourceTree = "<group>"; };
 		9FC5818A1C047D40002461AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FE15E0F1C3CB0010073BDF5 /* ImageChoose.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageChoose.cpp; sourceTree = "<group>"; };
+		9FE15E101C3CB0010073BDF5 /* ImageChoose.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ImageChoose.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +168,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F79DCBB1C13406100435D0D /* Foundation.framework in Frameworks */,
+				9F6523E51C0EA7F50094641A /* QuartzCore.framework in Frameworks */,
+				9F6523E31C0EA7EA0094641A /* UIKit.framework in Frameworks */,
+				9F6523DE1C0EA7D20094641A /* CoreGraphics.framework in Frameworks */,
+				9F6523DF1C0EA7D20094641A /* CoreImage.framework in Frameworks */,
+				9F6523DB1C0EA7C80094641A /* CoreMedia.framework in Frameworks */,
+				9F6523D91C0EA7C20094641A /* AssetsLibrary.framework in Frameworks */,
+				9F6523D71C0EA7BC0094641A /* AVFoundation.framework in Frameworks */,
+				9F6523D51C0EA7B50094641A /* CoreVideo.framework in Frameworks */,
+				9F6523D31C0EA76B0094641A /* Accelerate.framework in Frameworks */,
+				9F05E4991C07EFEE007193C8 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,9 +199,104 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F05E4B11C07F247007193C8 /* PointMatching */ = {
+			isa = PBXGroup;
+			children = (
+				9F05E4F71C07FB9C007193C8 /* KeypointMatcher3D2D.cpp */,
+				9F05E4F81C07FB9C007193C8 /* KeypointMatcher3D2D.h */,
+				9F6523E61C0ECF220094641A /* BriskKeypointMatcher3D2D.cpp */,
+				9F6523E71C0ECF220094641A /* BriskKeypointMatcher3D2D.hpp */,
+			);
+			name = PointMatching;
+			sourceTree = "<group>";
+		};
+		9F05E4B81C07F693007193C8 /* Mesh */ = {
+			isa = PBXGroup;
+			children = (
+				9F05E4B91C07F738007193C8 /* LaplacianMesh.cpp */,
+				9F05E4BA1C07F738007193C8 /* LaplacianMesh.h */,
+				9F05E4BB1C07F738007193C8 /* TriangleMesh.cpp */,
+				9F05E4BC1C07F738007193C8 /* TriangleMesh.h */,
+			);
+			name = Mesh;
+			sourceTree = "<group>";
+		};
+		9F05E4C41C07F804007193C8 /* MatchTracker */ = {
+			isa = PBXGroup;
+			children = (
+				9F05E4C51C07F818007193C8 /* InlierMatchTracker.cpp */,
+				9F05E4C61C07F818007193C8 /* InlierMatchTracker.h */,
+				9F05E4C71C07F818007193C8 /* LKPointTracker.cpp */,
+				9F05E4C81C07F818007193C8 /* LKPointTracker.h */,
+			);
+			name = MatchTracker;
+			sourceTree = "<group>";
+		};
+		9F05E4D21C07F83F007193C8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9F05E4CB1C07F83B007193C8 /* DefinedMacros.h */,
+				9F05E4CC1C07F83B007193C8 /* DUtils.cpp */,
+				9F05E4CD1C07F83B007193C8 /* DUtils.h */,
+				9F05E4CE1C07F83B007193C8 /* Visualization.cpp */,
+				9F05E4CF1C07F83B007193C8 /* Visualization.h */,
+				9F6523E91C0EDCDC0094641A /* Timer.cpp */,
+				9F6523EA1C0EDCDC0094641A /* Timer.hpp */,
+				9F726E1D1C118648002CFBA3 /* MatByteConverter.cpp */,
+				9F726E1E1C118648002CFBA3 /* MatByteConverter.hpp */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		9F05E4E81C07F858007193C8 /* Linear */ = {
+			isa = PBXGroup;
+			children = (
+				9F05E4D31C07F855007193C8 /* EqualConstrFunction.cpp */,
+				9F05E4D41C07F855007193C8 /* EqualConstrFunction.h */,
+				9F05E4D51C07F855007193C8 /* EqualConstrOptimize.cpp */,
+				9F05E4D61C07F855007193C8 /* EqualConstrOptimize.h */,
+				9F05E4D71C07F855007193C8 /* Function.cpp */,
+				9F05E4D81C07F855007193C8 /* Function.h */,
+				9F05E4D91C07F855007193C8 /* IneqConstrFunction.cpp */,
+				9F05E4DA1C07F855007193C8 /* IneqConstrFunction.h */,
+				9F05E4DB1C07F855007193C8 /* IneqConstrOptimize.cpp */,
+				9F05E4DC1C07F855007193C8 /* IneqConstrOptimize.h */,
+				9F05E4DD1C07F855007193C8 /* LinearAlgebraUtils.cpp */,
+				9F05E4DE1C07F855007193C8 /* LinearAlgebraUtils.h */,
+				9F05E4DF1C07F855007193C8 /* ObjectiveFunction.cpp */,
+				9F05E4E01C07F855007193C8 /* ObjectiveFunction.h */,
+				9FAD39C01C1EF537007A9BAD /* SoftConstrFunction.cpp */,
+				9FAD39C11C1EF537007A9BAD /* SoftConstrFunction.h */,
+				9FAD39C31C1F1383007A9BAD /* SoftConstrOptimize.cpp */,
+				9FAD39C41C1F1383007A9BAD /* SoftConstrOptimize.h */,
+			);
+			name = Linear;
+			sourceTree = "<group>";
+		};
+		9F05E4FB1C083F66007193C8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9F05E4FD1C083F9C007193C8 /* Data.cpp */,
+				9F05E4FE1C083F9C007193C8 /* Data.hpp */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		9FC581541C047D40002461AE = {
 			isa = PBXGroup;
 			children = (
+				9F79DCBA1C13406100435D0D /* Foundation.framework */,
+				9F726C601C116B6C002CFBA3 /* armadillo.framework */,
+				9F6523E41C0EA7F50094641A /* QuartzCore.framework */,
+				9F6523E11C0EA7EA0094641A /* UIKit.framework */,
+				9F6523DC1C0EA7D20094641A /* CoreGraphics.framework */,
+				9F6523DD1C0EA7D20094641A /* CoreImage.framework */,
+				9F6523DA1C0EA7C80094641A /* CoreMedia.framework */,
+				9F6523D81C0EA7C20094641A /* AssetsLibrary.framework */,
+				9F6523D61C0EA7BC0094641A /* AVFoundation.framework */,
+				9F6523D41C0EA7B50094641A /* CoreVideo.framework */,
+				9F6523D21C0EA76B0094641A /* Accelerate.framework */,
+				9F05E4981C07EFEE007193C8 /* opencv2.framework */,
 				9FC5815F1C047D40002461AE /* RealTimeTrack */,
 				9FC5817C1C047D40002461AE /* RealTimeTrackTests */,
 				9FC581871C047D40002461AE /* RealTimeTrackUITests */,
@@ -103,16 +317,28 @@
 		9FC5815F1C047D40002461AE /* RealTimeTrack */ = {
 			isa = PBXGroup;
 			children = (
+				9F05E4FB1C083F66007193C8 /* Data */,
+				9F05E4EC1C07F86F007193C8 /* Camera.cpp */,
+				9F05E4ED1C07F86F007193C8 /* Camera.h */,
+				9F05E4E91C07F867007193C8 /* Reconstruction.cpp */,
+				9F05E4EA1C07F867007193C8 /* Reconstruction.h */,
+				9F05E4E81C07F858007193C8 /* Linear */,
+				9F05E4D21C07F83F007193C8 /* Utils */,
+				9F05E4C41C07F804007193C8 /* MatchTracker */,
+				9F05E4B81C07F693007193C8 /* Mesh */,
+				9F05E4B11C07F247007193C8 /* PointMatching */,
 				9FC581631C047D40002461AE /* AppDelegate.h */,
 				9FC581641C047D40002461AE /* AppDelegate.m */,
 				9FC581661C047D40002461AE /* ViewController.h */,
-				9FC581671C047D40002461AE /* ViewController.m */,
+				9FC581671C047D40002461AE /* ViewController.mm */,
 				9FC581691C047D40002461AE /* Main.storyboard */,
 				9FC5816F1C047D40002461AE /* Assets.xcassets */,
 				9FC581711C047D40002461AE /* LaunchScreen.storyboard */,
 				9FC581741C047D40002461AE /* Info.plist */,
 				9FC5816C1C047D40002461AE /* RealTimeTrack.xcdatamodeld */,
 				9FC581601C047D40002461AE /* Supporting Files */,
+				9FE15E0F1C3CB0010073BDF5 /* ImageChoose.cpp */,
+				9FE15E101C3CB0010073BDF5 /* ImageChoose.hpp */,
 			);
 			path = RealTimeTrack;
 			sourceTree = "<group>";
@@ -153,6 +379,7 @@
 				9FC581591C047D40002461AE /* Sources */,
 				9FC5815A1C047D40002461AE /* Frameworks */,
 				9FC5815B1C047D40002461AE /* Resources */,
+				9F726E1C1C1170BF002CFBA3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -210,6 +437,7 @@
 				TargetAttributes = {
 					9FC5815C1C047D40002461AE = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = AU65CUHBD7;
 					};
 					9FC581781C047D40002461AE = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -273,9 +501,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FC581681C047D40002461AE /* ViewController.m in Sources */,
+				9F05E4EB1C07F867007193C8 /* Reconstruction.cpp in Sources */,
+				9F05E4D01C07F83B007193C8 /* DUtils.cpp in Sources */,
+				9F05E4C91C07F818007193C8 /* InlierMatchTracker.cpp in Sources */,
+				9F05E4E41C07F855007193C8 /* IneqConstrFunction.cpp in Sources */,
+				9FC581681C047D40002461AE /* ViewController.mm in Sources */,
+				9F05E4BD1C07F738007193C8 /* LaplacianMesh.cpp in Sources */,
+				9F05E4BE1C07F738007193C8 /* TriangleMesh.cpp in Sources */,
+				9FAD39C51C1F1383007A9BAD /* SoftConstrOptimize.cpp in Sources */,
+				9FE15E111C3CB0010073BDF5 /* ImageChoose.cpp in Sources */,
+				9F05E4E31C07F855007193C8 /* Function.cpp in Sources */,
+				9F05E4FA1C07FB9C007193C8 /* KeypointMatcher3D2D.cpp in Sources */,
+				9F05E4E61C07F855007193C8 /* LinearAlgebraUtils.cpp in Sources */,
+				9F05E4E11C07F855007193C8 /* EqualConstrFunction.cpp in Sources */,
+				9F05E4E21C07F855007193C8 /* EqualConstrOptimize.cpp in Sources */,
+				9F6523EB1C0EDCDC0094641A /* Timer.cpp in Sources */,
 				9FC581651C047D40002461AE /* AppDelegate.m in Sources */,
+				9F05E4D11C07F83B007193C8 /* Visualization.cpp in Sources */,
+				9F05E4E71C07F855007193C8 /* ObjectiveFunction.cpp in Sources */,
+				9F05E4EE1C07F86F007193C8 /* Camera.cpp in Sources */,
 				9FC5816E1C047D40002461AE /* RealTimeTrack.xcdatamodeld in Sources */,
+				9F05E4E51C07F855007193C8 /* IneqConstrOptimize.cpp in Sources */,
+				9F726E1F1C118648002CFBA3 /* MatByteConverter.cpp in Sources */,
+				9F05E4FF1C083F9C007193C8 /* Data.cpp in Sources */,
+				9F05E4CA1C07F818007193C8 /* LKPointTracker.cpp in Sources */,
+				9F6523E81C0ECF220094641A /* BriskKeypointMatcher3D2D.cpp in Sources */,
+				9FAD39C21C1EF537007A9BAD /* SoftConstrFunction.cpp in Sources */,
 				9FC581621C047D40002461AE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,6 +622,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -408,6 +660,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -415,8 +668,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/RealTimeTrack",
+					"\"$(SRCROOT)/../../graduation-design\"",
+				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = RealTimeTrack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RealTimeTrack",
+					"\"$(SRCROOT)/../../graduation-design/deformabletracker/3rdparty/ferns\"",
+					"\"$(SRCROOT)/../../graduation-design/deformabletracker/3rdparty/timer\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = YY.RealTimeTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -426,8 +693,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/RealTimeTrack",
+					"\"$(SRCROOT)/../../graduation-design\"",
+				);
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = RealTimeTrack/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/RealTimeTrack",
+					"\"$(SRCROOT)/../../graduation-design/deformabletracker/3rdparty/ferns\"",
+					"\"$(SRCROOT)/../../graduation-design/deformabletracker/3rdparty/timer\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = YY.RealTimeTrack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -500,6 +781,7 @@
 				9FC5818F1C047D40002461AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9FC581901C047D40002461AE /* Build configuration list for PBXNativeTarget "RealTimeTrackTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +790,7 @@
 				9FC581921C047D40002461AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9FC581931C047D40002461AE /* Build configuration list for PBXNativeTarget "RealTimeTrackUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +799,7 @@
 				9FC581951C047D40002461AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
