@@ -113,6 +113,7 @@ static const unsigned int DETECT_THRES = 100;
     //cv::line(refImg, cv::Point(0, 0), cv::Point(640, 480), KPT_COLOR);
     Visualization::DrawAQuadrangle  ( refImg, topLeft, topRight, bottomRight, bottomLeft, TPL_COLOR );
     Visualization::DrawProjectedMesh( refImg, *refMesh, modelCamCamera, MESH_COLOR );
+    Visualization::DrawKeyPoints(refImg, *refMesh, ctrPointIds, modelCamCamera, MATCH_COLOR);
 }
 
 - (IBAction)takePhoto:(id)sender {
@@ -121,7 +122,7 @@ static const unsigned int DETECT_THRES = 100;
     if (!keypointMatcher) {
         [self loadRefImageAndPointMatcher];
     }
-    _templateView.image = MatToUIImage(perFrameImg);
+    _templateView.image = MatToUIImage(refImg);
 }
 
 - (void)viewDidLoad {
@@ -286,6 +287,7 @@ static const unsigned int DETECT_THRES = 100;
             cout << "Constrained reconstruction time: " << timer.getElapsedTimeInMilliSec() << " ms \n\n";
             
             Visualization::DrawProjectedMesh( image, resMesh, realCamCamera, MESH_COLOR );
+            Visualization::DrawCenter(image, resMesh, realCamCamera, GREEN_COLOR);
         } else {
             lostTrack = true;
         }
