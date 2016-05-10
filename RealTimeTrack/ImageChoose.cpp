@@ -95,7 +95,8 @@ int ImageChoose::Vote(const cv::Mat &image, vector<cv::KeyPoint>& refKeypoints, 
     // NDDR method
     float nndrRatio = 0.8f;
     int cnt = 0;
-    uvec indices;
+    vector<uvec> indices;
+    indices.resize(sizes.size());
     for (int i = 0; i < sceneDescriptors.rows; ++i)
     {
         //std::cout << dists.at<int>(i, 0) << std::endl;
@@ -103,13 +104,13 @@ int ImageChoose::Vote(const cv::Mat &image, vector<cv::KeyPoint>& refKeypoints, 
            dists.at<int>(i,0) <= nndrRatio * dists.at<int>(i,1)) {
             
             int indice = results.at<int>(i,0);
-            indices.insert_rows(cnt, 1);
-            indices(cnt++) = indice;
             if (indice < sizes[0])
             {
                 votes[0]++;
                 refGroupKeypoints[0].push_back(keypoints[0][indice]);
                 inputGroupKeypoints[0].push_back(strongestKeyPoints[i]);
+                indices[0].insert_rows(indices[0].n_rows, 1);
+                indices[0](indices[0].n_rows-1) = indice;
             } else {
                 for (int j = 0; j < sizes.size() - 1; ++j)
                 {
@@ -119,6 +120,8 @@ int ImageChoose::Vote(const cv::Mat &image, vector<cv::KeyPoint>& refKeypoints, 
                         votes[j+1]++;
                         refGroupKeypoints[j+1].push_back(keypoints[j+1][indice-sizes[j]]);
                         inputGroupKeypoints[j+1].push_back(strongestKeyPoints[i]);
+                        indices[j+1].insert_rows(indices[j+1].n_rows, 1);
+                        indices[j+1](indices[j+1].n_rows-1) = indice;
                         break;
                     }
                 }
@@ -133,7 +136,8 @@ int ImageChoose::Vote(const cv::Mat &image, vector<cv::KeyPoint>& refKeypoints, 
     int distance = (int)std::distance(votes.begin(), max_vote);
     refKeypoints = refGroupKeypoints[distance];
     inputKeypoints = inputGroupKeypoints[distance];
-    ref3DPoints = bary3DRefKeypoints.rows(indices);
+    ref3DPoints = bary3DRefKeypoints.rows(indices[distance]);
+    cout << ref3DPoints.n_rows << " == " << refKeypoints.size() << endl;
     return *max_vote;
 }
 

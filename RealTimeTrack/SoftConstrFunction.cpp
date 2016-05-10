@@ -82,7 +82,7 @@ void SoftConstrFunction::Evaluate(const arma::vec &x) {
     //cout << this->J << endl;
     vec CPxabs = arma::abs(CPx);
     
-#if 1
+#if 0
     cout << "Constraint function mean: " << arma::mean(CPxabs) << endl;
 #endif
 
