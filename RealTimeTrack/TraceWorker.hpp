@@ -41,7 +41,7 @@ class TraceWorker {
     
     const int detectInterval = 10;
     
-    const int THRESHOLD = 50;
+    const int THRESHOLD = 100;
     
     arma::mat getMatches(const vector<cv::KeyPoint>& crtKeypoints, const cv::Mat& crtDescriptors);
     

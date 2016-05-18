@@ -66,8 +66,10 @@ void DetectWorker::detect(cv::Mat &img)
     }
 }
 
-int DetectWorker::vote(cv::Mat &image, vector<cv::Point>& convex)
+int DetectWorker::vote(cv::Mat &image)
 {
+    static Timer timer;
+    timer.start();
     cv::flann::Index flannIndex(concatDescriptors(TraceManager::imageDatabase->getAllDescriptors()), cv::flann::LshIndexParams(12, 20, 2), cvflann::FLANN_DIST_HAMMING);
     
     
@@ -123,17 +125,19 @@ int DetectWorker::vote(cv::Mat &image, vector<cv::Point>& convex)
     }
     for (int i = 0; i < votes.size(); ++i)
     {
-        std::cout << "votes" << i << " is " << votes[i] << std::endl;
+//        std::cout << "votes" << i << " is " << votes[i] << std::endl;
     }
     auto max_vote = std::max_element(votes.begin(), votes.end());
     int distance = (int)std::distance(votes.begin(), max_vote);
     if (*max_vote > THRESHOLD) {
         result = distance;
-        convex = {cv::Point(0, 0), cv::Point(0, 480), cv::Point(640, 480), cv::Point(640, 0)};
+//        convex = {cv::Point(0, 0), cv::Point(0, 480), cv::Point(640, 480), cv::Point(640, 0)};
 //        convexHull(keypointToPoint(inputGroupKeypoints[distance]), convex);
         cout << "Detector select " << distance << "th candidate..." << endl;
     }
     
+    timer.stop();
+//    cout << "Detect cost " << timer.getElapsedTimeInMilliSec() << " ms\n";
     return result;
 }
 

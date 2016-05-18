@@ -35,7 +35,7 @@ static const unsigned int DETECT_THRES = 100;
     	// Threshold on number of inliers to detect the surface
     TraceManager* traceManager;
     
-    cv::Mat  refImg, inputImg, perFrameImg;					// Reference image and input image
+    cv::Mat  refImg, inputImg, perFrameImg, testImg;					// Reference image and input image
     cv::Mat referenceImgRGB;
     
     CvVideoCamera* videoCamera;
@@ -106,7 +106,24 @@ static const unsigned int DETECT_THRES = 100;
 }
 
 - (IBAction)takePhoto:(id)sender {
+//    cv::Mat ref;
+//    NSString* filePath = [[NSBundle mainBundle]
+//                              pathForResource:@"cloud" ofType:@"JPG"];
+//    UIImage* resImage = [UIImage imageWithContentsOfFile:filePath];
+//    UIImageToMat(resImage, ref, true);
+//    ref = cv::imread([filePath UTF8String]);
+    
+//    ref = ref.t();
+//    flip(ref, ref, 1);
+//    cv::resize(ref, ref, cv::Size(640, 480));
+//    ref = ref.t();
+//    flip(ref, ref, 0);
+//    cv::cvtColor(ref, ref, CV_RGBA2GRAY);
+//    cv::resize(ref, ref, cv::Size(480, 640));
+//    ref = ref.t();
+//    flip(ref, ref, 0);
     TraceManager::imageDatabase->addImage(refImg.clone());
+//    testImg = ref;
 //    _templateView.image = MatToUIImage(refImg);
 }
 
@@ -115,12 +132,10 @@ static const unsigned int DETECT_THRES = 100;
     [self initSharedVariables];
     [self loadCamerasAndRefMesh];
     
-    ConvexHull hull;
-    hull.addPoint(Point2d(200, 100));
-    hull.addPoint(Point2d(300, 100));
-    hull.addPoint(Point2d(400, 400));
-    hull.addPoint(Point2d(100, 400));
-    assert(!hull.isInConvexHull(cv::Point2d(340, 200)));
+//    NSString* filePath = [[NSBundle mainBundle]
+//                          pathForResource:@"cloud" ofType:@"JPG"];
+//    UIImage* resImage = [UIImage imageWithContentsOfFile:filePath];
+
     TraceManager::imageDatabase = new ImageDatabase(*(refMesh), modelCamCamera);
     traceManager = new TraceManager();
     traceManager->init(refMesh, &realCamCamera);
@@ -146,6 +161,7 @@ static const unsigned int DETECT_THRES = 100;
 //    
 //    image = cv::Mat(image, rect);
     cv::cvtColor( image, image, cv::COLOR_BGR2RGB );
+    
     traceManager->outputImg = image.clone();
     
     cv::cvtColor( image, image, cv::COLOR_RGB2GRAY );
@@ -157,6 +173,9 @@ static const unsigned int DETECT_THRES = 100;
     }
     
     image = traceManager->outputImg;
+//    if (!testImg.empty()) {
+//        image = testImg;
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

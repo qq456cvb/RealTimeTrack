@@ -45,7 +45,7 @@ class TraceManager {
     DetectWorker* detecter;
     
     vector<std::mutex*> hullMutex;
-    
+    bool needDetect;
     
 public:
     static ImageDatabase* imageDatabase;
@@ -56,7 +56,7 @@ public:
     
     bool needNewWorker;
     void init(LaplacianMesh* refMesh, Camera* realCamera);
-    void startNewWorker(int candidateIdx, const vector<cv::Point>& convex);
+    void startNewWorker(int candidateIdx);
     void feed(cv::Mat& img);
     void update();
     bool inConvex(const cv::Point2d& pt);

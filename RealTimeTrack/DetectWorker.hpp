@@ -25,7 +25,7 @@ class DetectWorker {
     std::vector<KeyPoint> crtKeypoints;
     cv::Mat crtDescriptors;
     const int inputKeypointSize = 1000;
-    const int THRESHOLD = 80;
+    const int THRESHOLD = 150;
     
 public:
     DetectWorker(TraceManager* manager);
@@ -41,7 +41,7 @@ public:
      *
      *  @param img current image
      */
-    int vote(cv::Mat& img, std::vector<cv::Point>& convex);
+    int vote(cv::Mat& img);
     void detect(cv::Mat& img);
 };
 #endif /* DetectWorker_hpp */

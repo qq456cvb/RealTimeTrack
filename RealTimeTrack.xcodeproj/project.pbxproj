@@ -42,6 +42,7 @@
 		9F79DCBB1C13406100435D0D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79DCBA1C13406100435D0D /* Foundation.framework */; };
 		9F7ECEEF1CDADAF100350DC8 /* TraceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7ECEED1CDADAF100350DC8 /* TraceManager.cpp */; };
 		9F7ECEF21CDADB3800350DC8 /* TraceWorker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7ECEF01CDADB3800350DC8 /* TraceWorker.cpp */; };
+		9FA1B8E81CEAF305003D9B14 /* cloud.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 9FA1B8E71CEAF305003D9B14 /* cloud.JPG */; };
 		9FAA5EC51CDB10C000BFFFA2 /* DetectWorker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA5EC31CDB10C000BFFFA2 /* DetectWorker.cpp */; };
 		9FAA5EC81CDC3B6E00BFFFA2 /* ImageDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA5EC61CDC3B6E00BFFFA2 /* ImageDatabase.cpp */; };
 		9FAD39C21C1EF537007A9BAD /* SoftConstrFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD39C01C1EF537007A9BAD /* SoftConstrFunction.cpp */; };
@@ -149,6 +150,7 @@
 		9F7ECEEE1CDADAF100350DC8 /* TraceManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TraceManager.hpp; sourceTree = "<group>"; };
 		9F7ECEF01CDADB3800350DC8 /* TraceWorker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TraceWorker.cpp; sourceTree = "<group>"; };
 		9F7ECEF11CDADB3800350DC8 /* TraceWorker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TraceWorker.hpp; sourceTree = "<group>"; };
+		9FA1B8E71CEAF305003D9B14 /* cloud.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cloud.JPG; sourceTree = "<group>"; };
 		9FAA5EC31CDB10C000BFFFA2 /* DetectWorker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DetectWorker.cpp; sourceTree = "<group>"; };
 		9FAA5EC41CDB10C000BFFFA2 /* DetectWorker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DetectWorker.hpp; sourceTree = "<group>"; };
 		9FAA5EC61CDC3B6E00BFFFA2 /* ImageDatabase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageDatabase.cpp; sourceTree = "<group>"; };
@@ -301,9 +303,18 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		9FA1B8E61CEAF2F2003D9B14 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9FA1B8E71CEAF305003D9B14 /* cloud.JPG */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		9FC581541C047D40002461AE = {
 			isa = PBXGroup;
 			children = (
+				9FA1B8E61CEAF2F2003D9B14 /* Resources */,
 				9F79DCBA1C13406100435D0D /* Foundation.framework */,
 				9F726C601C116B6C002CFBA3 /* armadillo.framework */,
 				9F6523E41C0EA7F50094641A /* QuartzCore.framework */,
@@ -356,8 +367,8 @@
 				9FC581741C047D40002461AE /* Info.plist */,
 				9FC5816C1C047D40002461AE /* RealTimeTrack.xcdatamodeld */,
 				9FC581601C047D40002461AE /* Supporting Files */,
-				9FE15E0F1C3CB0010073BDF5 /* ImageChoose.cpp */,
 				9FE15E101C3CB0010073BDF5 /* ImageChoose.hpp */,
+				9FE15E0F1C3CB0010073BDF5 /* ImageChoose.cpp */,
 				9F7ECEED1CDADAF100350DC8 /* TraceManager.cpp */,
 				9F7ECEEE1CDADAF100350DC8 /* TraceManager.hpp */,
 				9F7ECEF01CDADB3800350DC8 /* TraceWorker.cpp */,
@@ -501,6 +512,7 @@
 			files = (
 				9FC581731C047D40002461AE /* LaunchScreen.storyboard in Resources */,
 				9FC581701C047D40002461AE /* Assets.xcassets in Resources */,
+				9FA1B8E81CEAF305003D9B14 /* cloud.JPG in Resources */,
 				9FC5816B1C047D40002461AE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

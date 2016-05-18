@@ -32,8 +32,8 @@ mat Data::loadVertexs() {
             data.insert_rows(cnt++, vec);
         }
     }
-    std::cout << data.n_rows << std::endl;
-    std::cout << data.n_cols << std::endl;
+//    std::cout << data.n_rows << std::endl;
+//    std::cout << data.n_cols << std::endl;
 //    data
 //    <<  0.0000000e+00  << 0.0000000e+00  << 0.0000000e+00 << endr
 //    <<  3.8095238e+01  << 0.0000000e+00  << 0.0000000e+00 << endr
@@ -351,8 +351,8 @@ umat Data::loadFacets()
 //    << 66 << 77 << 106 << endr
 //    << 106 << 77 << 88 << endr
 //    << 87 << 107 << 98 << endr;
-    std::cout << data.n_rows << std::endl;
-    std::cout << data.n_cols << std::endl;
+//    std::cout << data.n_rows << std::endl;
+//    std::cout << data.n_cols << std::endl;
     return data;
 }
 

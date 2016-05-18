@@ -78,6 +78,7 @@ void TraceManager::init(LaplacianMesh *refMesh, Camera *realCamera)
     this->realCamera = realCamera;
     
     detecter = new DetectWorker(this);
+    needDetect = true;
 }
 
 void TraceManager::feed(cv::Mat &img)
@@ -89,9 +90,11 @@ void TraceManager::feed(cv::Mat &img)
     // first detect keypoints and descriptors
     // TODO: make detect behind the worker to make convex test right
     detecter->detect(img);
-    
-    vector<Point> convex;
-    auto future = std::async(std::launch::async, &DetectWorker::vote, detecter, std::ref(img), std::ref(convex));
+
+    std::future<int> future;
+    if (needDetect) {
+        future = std::async(std::launch::async, &DetectWorker::vote, detecter, std::ref(img));
+    }
 //    int candidateIdx = detecter->vote(img);
     
     // reuse detector's descriptor
@@ -101,21 +104,28 @@ void TraceManager::feed(cv::Mat &img)
         }
     }
     
-    int candidateIdx = future.get();
-    needNewWorker = candidateIdx != -1;
     // wait for all tasks to finish
     for (int i = 0; i < threads.size(); i++) {
         if (threads[i].joinable()) {
             threads[i].join();
         }
     }
-    
-    if (needNewWorker) {
-        startNewWorker(candidateIdx, convex);
+    if (needDetect) {
+        int candidateIdx = future.get();
+        needNewWorker = candidateIdx != -1;
+        
+        
+        if (needNewWorker) {
+            startNewWorker(candidateIdx);
+            needDetect = false;
+        }
+    } else {
+        needDetect = true;
     }
+    
 }
 
-void TraceManager::startNewWorker(int candidateIdx, const vector<cv::Point>& convex)
+void TraceManager::startNewWorker(int candidateIdx)
 {
     cout << "Starting worker...\n";
     // find available worker
@@ -124,11 +134,7 @@ void TraceManager::startNewWorker(int candidateIdx, const vector<cv::Point>& con
         if (workers[i]->status == TraceWorker::AVAILABLE) {
             workers[i]->reset(refMesh, this->imageDatabase->getBary3DRefKeypoints(candidateIdx), this->imageDatabase->getKeypoints(candidateIdx), this->imageDatabase->getDescriptors(candidateIdx));
             reuseWorker = true;
-            // avoid redetecting
-            getHull(i).clear();
-            for (int j = 0; j < convex.size(); ++j) {
-                getHull(i).addPoint(convex[j]);
-            }
+
             break;
         }
     }
@@ -141,11 +147,6 @@ void TraceManager::startNewWorker(int candidateIdx, const vector<cv::Point>& con
         hullMutex.push_back(new std::mutex);
         hulls.push_back(ConvexHull());
         
-        // avoid redetecting
-        getHull((int)workers.size()-1).clear();
-        for (int i = 0; i < convex.size(); ++i) {
-            getHull((int)workers.size()-1).addPoint(convex[i]);
-        }
     }
 }
 

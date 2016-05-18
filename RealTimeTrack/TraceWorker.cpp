@@ -85,6 +85,9 @@ arma::mat TraceWorker::getMatches(const vector<cv::KeyPoint>& crtKeypoints, cons
         if(results.at<int>(i,0) >= 0 && results.at<int>(i,1) >= 0 &&
            dists.at<int>(i,0) <= nndrRatio * dists.at<int>(i,1)) {
             int index = results.at<int>(i,0);
+            if (index >= (*refKeypoints).size()) {
+                continue;
+            }
             indices.insert_rows(cnt, 1);
             indices(cnt++) = index;
             inputKeypoints.push_back(crtKeypoints[i]);
@@ -119,20 +122,54 @@ arma::mat TraceWorker::getMatches(const vector<cv::KeyPoint>& crtKeypoints, cons
  */
 void TraceWorker::trace(cv::Mat &img, const vector<cv::KeyPoint>& crtKeypoints, const cv::Mat& crtDescriptors)
 {
+    static Timer timer;
+    timer.start();
     assert(this->status == BUSY);
     
     mat trackedMatches = tracker->TrackMatches(img, matchesInlier);
+    timer.stop();
+    
+    cout << "track match cost " << timer.getElapsedTimeInMilliSec() << endl;
     arma::mat matchesAll;
-    if (crtFrame++ % detectInterval == 0) { // recompute
-        matchesAll = join_vert(getMatches(crtKeypoints, crtDescriptors), trackedMatches);
-        
+    if (crtFrame % detectInterval == 0) { // recompute
+        vector<KeyPoint> validKeypoints;
+        validKeypoints.reserve(crtKeypoints.size());
+        cv::Mat validDescriptors(0, crtDescriptors.cols, crtDescriptors.type());
+        if (crtFrame == 0) {
+            // init
+            for (int i = 0; i < crtKeypoints.size(); ++i) {
+                const Point2d& pt = crtKeypoints[i].pt;
+                if (delegate->inConvex(pt)) {
+                    continue;
+                }
+                validKeypoints.push_back(crtKeypoints[i]);
+                vconcat(validDescriptors, crtDescriptors.row(i), validDescriptors);
+            }
+        } else {
+            // only track its own region
+            for (int i = 0; i < crtKeypoints.size(); ++i) {
+                const Point2d& pt = crtKeypoints[i].pt;
+                if (delegate->getHull(id).isInConvexHull(pt)) {
+                    validKeypoints.push_back(crtKeypoints[i]);
+                    vconcat(validDescriptors, crtDescriptors.row(i), validDescriptors);
+                }
+            }
+        }
+        matchesAll = join_vert(getMatches(validKeypoints, validDescriptors), trackedMatches);
     } else { // track mode
         matchesAll = trackedMatches;
     }
+    
+    timer.start();
     reconstruction->ReconstructPlanarUnconstrIter( matchesAll, resMesh, inlierMatchIdxs );
     matchesInlier = matchesAll.rows(inlierMatchIdxs);
+    timer.stop();
     
+    cout << "uncstr cost " << timer.getElapsedTimeInMilliSec() << endl;
+    
+    timer.start();
     if (((crtFrame-1) == 0 && inlierMatchIdxs.n_rows > THRESHOLD) || ((crtFrame-1) != 0 && inlierMatchIdxs.n_rows > 0.4 * THRESHOLD)) {
+        
         
         const arma::mat& ctrlVertices = resMesh.GetCtrlVertices();
         vec cInit = reshape( ctrlVertices, resMesh.GetNCtrlPoints()*3, 1 );	// x1 x2..y1 y2..z1 z2..
@@ -160,4 +197,8 @@ void TraceWorker::trace(cv::Mat &img, const vector<cv::KeyPoint>& crtKeypoints, 
         delegate->setHull(id, convex);
         stop();
     }
+    crtFrame++;
+    
+    timer.stop();
+    cout << "constr cost " << timer.getElapsedTimeInMilliSec() << " ms\n";
 }
