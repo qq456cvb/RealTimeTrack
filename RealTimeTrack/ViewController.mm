@@ -54,6 +54,9 @@ static const unsigned int DETECT_THRES = 100;
 @implementation ViewController
 - (IBAction)toggleMode:(id)sender {
     mode = TRACK_MODE;
+//    traceManager->outputImg = testImg.clone();
+//    traceManager->feed(testImg);
+//    _imageView.image = MatToUIImage(traceManager->outputImg);
 }
 
 - (void)initSharedVariables {
@@ -109,22 +112,23 @@ static const unsigned int DETECT_THRES = 100;
 //    cv::Mat ref;
 //    NSString* filePath = [[NSBundle mainBundle]
 //                              pathForResource:@"cloud" ofType:@"JPG"];
-//    UIImage* resImage = [UIImage imageWithContentsOfFile:filePath];
-//    UIImageToMat(resImage, ref, true);
+////    UIImage* resImage = [UIImage imageWithContentsOfFile:filePath];
+////    UIImageToMat(resImage, ref, true);
 //    ref = cv::imread([filePath UTF8String]);
-    
+//    
 //    ref = ref.t();
 //    flip(ref, ref, 1);
 //    cv::resize(ref, ref, cv::Size(640, 480));
-//    ref = ref.t();
-//    flip(ref, ref, 0);
-//    cv::cvtColor(ref, ref, CV_RGBA2GRAY);
-//    cv::resize(ref, ref, cv::Size(480, 640));
-//    ref = ref.t();
-//    flip(ref, ref, 0);
-    TraceManager::imageDatabase->addImage(refImg.clone());
+//    cvtColor(ref, ref, CV_BGR2RGB);
+////    ref = ref.t();
+////    flip(ref, ref, 0);
+//    cv::cvtColor(ref, ref, CV_RGB2GRAY);
+////    cv::resize(ref, ref, cv::Size(480, 640));
+////    ref = ref.t();
+////    flip(ref, ref, 0);
+    TraceManager::imageDatabase->addImage(refImg);
 //    testImg = ref;
-//    _templateView.image = MatToUIImage(refImg);
+//    _imageView.image = MatToUIImage(ref);
 }
 
 - (void)viewDidLoad {
@@ -173,9 +177,9 @@ static const unsigned int DETECT_THRES = 100;
     }
     
     image = traceManager->outputImg;
-//    if (!testImg.empty()) {
-//        image = testImg;
-//    }
+    if (!testImg.empty()) {
+        image = testImg;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

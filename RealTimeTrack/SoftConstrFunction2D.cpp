@@ -1,14 +1,14 @@
 //
-//  SoftConstrOptimize.cpp
+//  SoftConstrFunction2D.cpp
 //  RealTimeTrack
 //
-//  Created by Neil on 12/14/15.
-//  Copyright © 2015 Neil. All rights reserved.
+//  Created by Neil on 5/19/16.
+//  Copyright © 2016 Neil. All rights reserved.
 //
 
-#include "SoftConstrFunction.h"
+#include "SoftConstrFunction2D.h"
 
-void SoftConstrFunction::Evaluate(const arma::vec &x) {
+void SoftConstrFunction2D::Evaluate(const arma::vec &x) {
     // Vertex coordinates: First convert control points into vertices
     // verCoords has the form of [x1 x2, x3... y1 y2 y3... z1 z2 z3]
     // We will compute Jacobian w.r.t vertex variables first, then we compute
@@ -71,12 +71,12 @@ void SoftConstrFunction::Evaluate(const arma::vec &x) {
         Jv(i, z2Idx) = (z2-z1) / edgeLen;
     }
     
-    this->F = MPwAP * x;
+    this->F = BPwAP * x;
     this->C = CPx;
     // Jacobian w.r.t actual variables using composition chain rule
-//    mat m1 = arma::join_cols(MPwAP, Jv * P);
+    //    mat m1 = arma::join_cols(MPwAP, Jv * P);
     //mat m2 = arma::join_rows(2*trans(MPwAP*x), 2 * trans(CPx));
-    this->J = MPwAP;
+    this->J = BPwAP;
     this->A = Jv * P;
     
     //cout << this->J << endl;
@@ -85,5 +85,4 @@ void SoftConstrFunction::Evaluate(const arma::vec &x) {
 #if 0
     cout << "Constraint function mean: " << arma::mean(CPxabs) << endl;
 #endif
-
 }

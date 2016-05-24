@@ -100,8 +100,8 @@ int DetectWorker::vote(cv::Mat &image)
     for (int i = 0; i < sceneDescriptors.rows; ++i)
     {
         if (delegate->inConvex(sceneKeypoints[i].pt)) {
-            std::unique_lock<std::mutex> lock(delegate->shared_mutex);
-            cv::circle(delegate->outputImg, sceneKeypoints[i].pt, 2, Scalar(255, 0, 0), -1);	// -1 mean filled circle
+//            std::unique_lock<std::mutex> lock(delegate->shared_mutex);
+//            cv::circle(delegate->outputImg, sceneKeypoints[i].pt, 2, Scalar(255, 0, 0), -1);	// -1 mean filled circle
             continue;
         }
         

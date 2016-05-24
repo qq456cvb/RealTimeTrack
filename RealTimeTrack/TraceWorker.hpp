@@ -32,6 +32,8 @@ class TraceWorker {
     arma::mat   				matchesInlier;
     unsigned int id;
     
+    int initMatches = 0;
+    
     /**
      *  recompute keypoints' interval, per 10 frames
      */

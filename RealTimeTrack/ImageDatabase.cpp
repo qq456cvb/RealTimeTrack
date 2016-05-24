@@ -8,7 +8,7 @@
 
 #include "ImageDatabase.hpp"
 
-ImageDatabase::ImageDatabase(const TriangleMesh &mesh, const Camera &cam):
+ImageDatabase::ImageDatabase(const LaplacianMesh &mesh, const Camera &cam):
     referenceMesh(mesh),
     camCamera(cam)
 {
@@ -47,7 +47,8 @@ void ImageDatabase::addImage(const cv::Mat &image)
     cout << "descriptor size: " << descriptors[descriptors.size()-1].rows << endl;
 
     // store 3D ref points
-    arma::mat ref3DPoints(objectDescriptors.rows, 6);
+    arma::mat ref3DPoints(objectDescriptors.rows, 6),
+        ref2DPoints(objectDescriptors.rows, 5);
     for(int i = 0; i < strongestKeyPoints.size(); i++)
     {
         cv::Point2d refPoint( strongestKeyPoints[i].pt.x, strongestKeyPoints[i].pt.y );
@@ -153,4 +154,14 @@ const std::vector<cv::Mat>& ImageDatabase::getAllDescriptors() const
 const std::vector<int>& ImageDatabase::getAccumulates() const
 {
     return accumulates;
+}
+
+const Camera& ImageDatabase::getRefCamera() const
+{
+    return camCamera;
+}
+
+const LaplacianMesh& ImageDatabase::getReferenceMesh() const
+{
+    return referenceMesh;
 }

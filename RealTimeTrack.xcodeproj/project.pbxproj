@@ -25,6 +25,7 @@
 		9F05E4EE1C07F86F007193C8 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4EC1C07F86F007193C8 /* Camera.cpp */; };
 		9F05E4FA1C07FB9C007193C8 /* KeypointMatcher3D2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4F71C07FB9C007193C8 /* KeypointMatcher3D2D.cpp */; };
 		9F05E4FF1C083F9C007193C8 /* Data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F05E4FD1C083F9C007193C8 /* Data.cpp */; };
+		9F5F558B1CF14C4200017346 /* Configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F5F55891CF14C4200017346 /* Configuration.cpp */; };
 		9F6523D31C0EA76B0094641A /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523D21C0EA76B0094641A /* Accelerate.framework */; };
 		9F6523D51C0EA7B50094641A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523D41C0EA7B50094641A /* CoreVideo.framework */; };
 		9F6523D71C0EA7BC0094641A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6523D61C0EA7BC0094641A /* AVFoundation.framework */; };
@@ -42,6 +43,7 @@
 		9F79DCBB1C13406100435D0D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F79DCBA1C13406100435D0D /* Foundation.framework */; };
 		9F7ECEEF1CDADAF100350DC8 /* TraceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7ECEED1CDADAF100350DC8 /* TraceManager.cpp */; };
 		9F7ECEF21CDADB3800350DC8 /* TraceWorker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F7ECEF01CDADB3800350DC8 /* TraceWorker.cpp */; };
+		9F8CD1381CED5AD400A181C0 /* SoftConstrFunction2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F8CD1361CED5AD400A181C0 /* SoftConstrFunction2D.cpp */; };
 		9FA1B8E81CEAF305003D9B14 /* cloud.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 9FA1B8E71CEAF305003D9B14 /* cloud.JPG */; };
 		9FAA5EC51CDB10C000BFFFA2 /* DetectWorker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA5EC31CDB10C000BFFFA2 /* DetectWorker.cpp */; };
 		9FAA5EC81CDC3B6E00BFFFA2 /* ImageDatabase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA5EC61CDC3B6E00BFFFA2 /* ImageDatabase.cpp */; };
@@ -127,6 +129,8 @@
 		9F05E4F81C07FB9C007193C8 /* KeypointMatcher3D2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeypointMatcher3D2D.h; path = "../../../graduation-design/deformabletracker/src/PointMatching/KeypointMatcher3D2D.h"; sourceTree = "<group>"; };
 		9F05E4FD1C083F9C007193C8 /* Data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Data.cpp; sourceTree = "<group>"; };
 		9F05E4FE1C083F9C007193C8 /* Data.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Data.hpp; sourceTree = "<group>"; };
+		9F5F55891CF14C4200017346 /* Configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Configuration.cpp; sourceTree = "<group>"; };
+		9F5F558A1CF14C4200017346 /* Configuration.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Configuration.hpp; sourceTree = "<group>"; };
 		9F6523D21C0EA76B0094641A /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		9F6523D41C0EA7B50094641A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		9F6523D61C0EA7BC0094641A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +154,8 @@
 		9F7ECEEE1CDADAF100350DC8 /* TraceManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TraceManager.hpp; sourceTree = "<group>"; };
 		9F7ECEF01CDADB3800350DC8 /* TraceWorker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TraceWorker.cpp; sourceTree = "<group>"; };
 		9F7ECEF11CDADB3800350DC8 /* TraceWorker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TraceWorker.hpp; sourceTree = "<group>"; };
+		9F8CD1361CED5AD400A181C0 /* SoftConstrFunction2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoftConstrFunction2D.cpp; sourceTree = "<group>"; };
+		9F8CD1371CED5AD400A181C0 /* SoftConstrFunction2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftConstrFunction2D.h; sourceTree = "<group>"; };
 		9FA1B8E71CEAF305003D9B14 /* cloud.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cloud.JPG; sourceTree = "<group>"; };
 		9FAA5EC31CDB10C000BFFFA2 /* DetectWorker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DetectWorker.cpp; sourceTree = "<group>"; };
 		9FAA5EC41CDB10C000BFFFA2 /* DetectWorker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DetectWorker.hpp; sourceTree = "<group>"; };
@@ -288,6 +294,8 @@
 				9FAD39C11C1EF537007A9BAD /* SoftConstrFunction.h */,
 				9FAD39C31C1F1383007A9BAD /* SoftConstrOptimize.cpp */,
 				9FAD39C41C1F1383007A9BAD /* SoftConstrOptimize.h */,
+				9F8CD1361CED5AD400A181C0 /* SoftConstrFunction2D.cpp */,
+				9F8CD1371CED5AD400A181C0 /* SoftConstrFunction2D.h */,
 			);
 			name = Linear;
 			sourceTree = "<group>";
@@ -375,6 +383,8 @@
 				9F7ECEF11CDADB3800350DC8 /* TraceWorker.hpp */,
 				9FAA5EC31CDB10C000BFFFA2 /* DetectWorker.cpp */,
 				9FAA5EC41CDB10C000BFFFA2 /* DetectWorker.hpp */,
+				9F5F55891CF14C4200017346 /* Configuration.cpp */,
+				9F5F558A1CF14C4200017346 /* Configuration.hpp */,
 			);
 			path = RealTimeTrack;
 			sourceTree = "<group>";
@@ -546,6 +556,7 @@
 				9F05E4BD1C07F738007193C8 /* LaplacianMesh.cpp in Sources */,
 				9F05E4BE1C07F738007193C8 /* TriangleMesh.cpp in Sources */,
 				9FAD39C51C1F1383007A9BAD /* SoftConstrOptimize.cpp in Sources */,
+				9F5F558B1CF14C4200017346 /* Configuration.cpp in Sources */,
 				9FE15E111C3CB0010073BDF5 /* ImageChoose.cpp in Sources */,
 				9F05E4E31C07F855007193C8 /* Function.cpp in Sources */,
 				9F05E4FA1C07FB9C007193C8 /* KeypointMatcher3D2D.cpp in Sources */,
@@ -565,6 +576,7 @@
 				9F726E1F1C118648002CFBA3 /* MatByteConverter.cpp in Sources */,
 				9F05E4FF1C083F9C007193C8 /* Data.cpp in Sources */,
 				9FAA5EC81CDC3B6E00BFFFA2 /* ImageDatabase.cpp in Sources */,
+				9F8CD1381CED5AD400A181C0 /* SoftConstrFunction2D.cpp in Sources */,
 				9FAA5EC51CDB10C000BFFFA2 /* DetectWorker.cpp in Sources */,
 				9F05E4CA1C07F818007193C8 /* LKPointTracker.cpp in Sources */,
 				9F6523E81C0ECF220094641A /* BriskKeypointMatcher3D2D.cpp in Sources */,

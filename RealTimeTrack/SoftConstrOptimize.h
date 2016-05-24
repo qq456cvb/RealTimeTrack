@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <armadillo/armadillo>
 #include "SoftConstrFunction.h"
+#include "SoftConstrFunction2D.h"
 #include "LaplacianMesh.h"
 
 using namespace arma;
@@ -39,8 +40,12 @@ public:
     
     virtual arma::vec OptimizeLagrange(const arma::vec& xInit, SoftConstrFunction& objtFunction, LaplacianMesh& resMesh);
     
+    virtual arma::vec OptimizeLagrange(const arma::vec& xInit, SoftConstrFunction2D& objtFunction, LaplacianMesh& resMesh);
+
 private:
     void takeAStepLagrange(arma::vec& x, SoftConstrFunction& objtFunction, LaplacianMesh& resMesh);
+    
+    void takeAStepLagrange(arma::vec& x, SoftConstrFunction2D& objtFunction, LaplacianMesh& resMesh);
 };
 
 #endif /* SoftConstrOptimize_hpp */

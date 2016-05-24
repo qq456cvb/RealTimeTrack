@@ -75,6 +75,9 @@ public:
         this->hulls[idx] = hull;
     }
     
+    const LaplacianMesh* getRefMesh() const {
+        return refMesh;
+    }
 };
 
 #endif /* TraceManager_hpp */

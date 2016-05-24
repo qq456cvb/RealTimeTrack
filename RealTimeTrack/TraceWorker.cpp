@@ -8,6 +8,7 @@
 
 #include "TraceWorker.hpp"
 #include "TraceManager.hpp"
+#include "Configuration.hpp"
 
 TraceWorker::TraceWorker(TraceManager* manager, int id)
 {
@@ -15,7 +16,7 @@ TraceWorker::TraceWorker(TraceManager* manager, int id)
     this->id = id;
     reconstruction      = new Reconstruction  ( *delegate->getRefMesh(), *delegate->getRealCamera(), wrInit, radiusInit, nUnConstrIters );
     reconstruction->SetUseTemporal(true);
-    reconstruction->SetUsePrevFrameToInit(true);
+    reconstruction->SetUsePrevFrameToInit(false);
     this->status = AVAILABLE;
 }
 
@@ -99,12 +100,18 @@ arma::mat TraceWorker::getMatches(const vector<cv::KeyPoint>& crtKeypoints, cons
     arma::mat matches3D2D;
     matches3D2D.resize(referenceKeypoints.size(), 9);
     
+    arma::mat allPoints = delegate->imageDatabase->getReferenceMesh().GetVertexCoords();
     for(int i = 0; i < referenceKeypoints.size(); i++)
     {
         matches3D2D(i, arma::span(0,5)) = ref3DPoints.row(i);
+//        rowvec vids = matches3D2D(i, arma::span(0, 2));
+//        rowvec barys = matches3D2D(i, arma::span(3, 5));
+//        rowvec point3D = barys(0) * allPoints.row(vids(0)) + barys(1) * allPoints.row(vids(1)) + barys(2) * allPoints.row(vids(2));
+//        auto point2D = delegate->imageDatabase->getRefCamera().ProjectAPoint(point3D.t());
+//        cout << point2D << endl;
         matches3D2D(i, 6) = inputKeypoints[i].pt.x;
         matches3D2D(i, 7) = inputKeypoints[i].pt.y;
-        
+//        cout << inputKeypoints[i].pt.x << " " << inputKeypoints[i].pt.y << endl;
         // ID of the 3D point of the match
         matches3D2D(i, 8) = i;
     }
@@ -126,7 +133,11 @@ void TraceWorker::trace(cv::Mat &img, const vector<cv::KeyPoint>& crtKeypoints, 
     timer.start();
     assert(this->status == BUSY);
     
-    mat trackedMatches = tracker->TrackMatches(img, matchesInlier);
+    mat trackedMatches, notTrackedMatches;
+    {
+        std::unique_lock<std::mutex> lock(delegate->shared_mutex);
+        trackedMatches = tracker->TrackMatches(img, matchesInlier);
+    }
     timer.stop();
     
     cout << "track match cost " << timer.getElapsedTimeInMilliSec() << endl;
@@ -155,26 +166,49 @@ void TraceWorker::trace(cv::Mat &img, const vector<cv::KeyPoint>& crtKeypoints, 
                 }
             }
         }
-        matchesAll = join_vert(getMatches(validKeypoints, validDescriptors), trackedMatches);
+        notTrackedMatches = getMatches(validKeypoints, validDescriptors);
+        matchesAll = join_vert(notTrackedMatches, trackedMatches);
     } else { // track mode
         matchesAll = trackedMatches;
     }
-    
+//    
     timer.start();
-    reconstruction->ReconstructPlanarUnconstrIter( matchesAll, resMesh, inlierMatchIdxs );
+    reconstruction->ReconstructPlanarUnconstrIter2D( matchesAll, resMesh, inlierMatchIdxs );
     matchesInlier = matchesAll.rows(inlierMatchIdxs);
+    {
+        std::unique_lock<std::mutex> lock(delegate->shared_mutex);
+        Visualization::DrawPointsAsDot( delegate->outputImg, matchesAll.cols(6,7), KPT_COLOR );				  // All points
+        Visualization::DrawPointsAsDot( delegate->outputImg, matchesInlier.cols(6,7), INLIER_KPT_COLOR );// Inlier points
+    }
     timer.stop();
+    cout << "2d uncstr cost " << timer.getElapsedTimeInMilliSec() << endl;
+
+    timer.start();
+    reconstruction->ReconstructPlanarUnconstrOnce(matchesInlier, resMesh);
+//    matchesInlier = matchesInlier.rows(inlierMatchIdxs);
+    timer.stop();
+//    
+//    timer.start();
+//    reconstruction->ReconstructPlanarUnconstrIter(matchesAll, resMesh, inlierMatchIdxs);
+//    matchesInlier = matchesAll.rows(inlierMatchIdxs);
+
+//    timer.stop();
     
+    cout << "inlier: " << inlierMatchIdxs.n_rows << endl;
     cout << "uncstr cost " << timer.getElapsedTimeInMilliSec() << endl;
     
     timer.start();
-    if (((crtFrame-1) == 0 && inlierMatchIdxs.n_rows > THRESHOLD) || ((crtFrame-1) != 0 && inlierMatchIdxs.n_rows > 0.4 * THRESHOLD)) {
+    if (crtFrame == 0) {
+        initMatches = (int)inlierMatchIdxs.n_rows;
+    }
+    if ((crtFrame == 0 && inlierMatchIdxs.n_rows > THRESHOLD) || (crtFrame != 0 && inlierMatchIdxs.n_rows > 0.6 * initMatches)) {
         
+        if (Configuration::enableDeformTracking) {
         
-        const arma::mat& ctrlVertices = resMesh.GetCtrlVertices();
-        vec cInit = reshape( ctrlVertices, resMesh.GetNCtrlPoints()*3, 1 );	// x1 x2..y1 y2..z1 z2..
-        reconstruction->ReconstructSoftConstr(cInit, resMesh);
-        
+            const arma::mat& ctrlVertices = resMesh.GetCtrlVertices();
+            vec cInit = reshape( ctrlVertices, resMesh.GetNCtrlPoints()*3, 1 );	// x1 x2..y1 y2..z1 z2..
+            reconstruction->ReconstructSoftConstr(cInit, resMesh);
+        }
         // update the convex hull
         ConvexHull hull;
         static uvec bound_id = {0, 4, 24, 20};

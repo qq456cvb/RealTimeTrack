@@ -22,6 +22,35 @@ vec SoftConstrOptimize::OptimizeLagrange(const arma::vec& xInit, SoftConstrFunct
     return x;
 }
 
+vec SoftConstrOptimize::OptimizeLagrange(const arma::vec& xInit, SoftConstrFunction2D& objtFunction, LaplacianMesh& resMesh) {
+    
+    vec x = xInit;						// Variables to be found
+    for (int i = 0; i < nIters; i++)
+    {
+        // Update x and s step by step using LVM algorithm
+        SoftConstrOptimize::takeAStepLagrange( x, objtFunction, resMesh );
+    }
+    
+    return x;
+}
+
+void SoftConstrOptimize::takeAStepLagrange(arma::vec& x, SoftConstrFunction2D &objtFunction, LaplacianMesh& resMesh) {
+    objtFunction.Evaluate(x);
+    
+    const vec& F = objtFunction.GetF();		// Function value
+    const mat& J = objtFunction.GetJ();		// Jacobian. F and J are reference to function.J
+    const vec& C = objtFunction.C;
+    const mat& A = objtFunction.A;
+    
+    long long lambda = 8400 * 8400;
+    
+    double err = 1e-6;
+    
+    // I don't know why this also works...
+    vec dx = LinearAlgebraUtils::LeastSquareSolve(trans(J)*J+lambda*trans(A)*A, -trans(J)*F-lambda*trans(A)*C, err);
+    x = x + dx;
+}
+
 void SoftConstrOptimize::takeAStepLagrange(arma::vec& x, SoftConstrFunction &objtFunction, LaplacianMesh& resMesh) {
     objtFunction.Evaluate(x);
     
@@ -30,11 +59,12 @@ void SoftConstrOptimize::takeAStepLagrange(arma::vec& x, SoftConstrFunction &obj
     const vec& C = objtFunction.C;
     const mat& A = objtFunction.A;
     
-    long long lambda = 10000 * 10000;
-    
-    double err = 1e-6;
-    vec dx = LinearAlgebraUtils::LeastSquareSolve(trans(J)*J+lambda*trans(A)*A, -trans(J)*F-lambda*trans(A)*C, err);
-    x = x + dx;
+    long long lambda = 8400;
+
+    // gradient descent works well.
+    vec dx = trans(J)*F + lambda * lambda * trans(A)*C;
+    double learningRate = 1e-10;
+    x = x - learningRate * dx;
 //    const mat& paramMat = refMesh.GetParamMatrix();
 //    // --------------- Eigen value decomposition --------------------------
 //    mat V;
