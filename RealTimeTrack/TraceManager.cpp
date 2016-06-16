@@ -7,6 +7,7 @@
 //
 
 #include "TraceManager.hpp"
+#include "Configuration.hpp"
 
 int ConvexHull::getSize()
 {
@@ -77,52 +78,80 @@ void TraceManager::init(LaplacianMesh *refMesh, Camera *realCamera)
     this->refMesh = refMesh;
     this->realCamera = realCamera;
     
-    detecter = new DetectWorker(this);
-    needDetect = true;
+    if (Configuration::mode == Configuration::MODE::Extend)
+    {
+        detecter = new DetectWorker(this);
+        needDetect = true;
+    }
 }
 
 void TraceManager::feed(cv::Mat &img)
 {
-    needNewWorker = false;
-    vector<std::thread> threads;
-    threads.resize(workers.size());
-    
-    // first detect keypoints and descriptors
-    // TODO: make detect behind the worker to make convex test right
-    detecter->detect(img);
-
-    std::future<int> future;
-    if (needDetect) {
-        future = std::async(std::launch::async, &DetectWorker::vote, detecter, std::ref(img));
-    }
-//    int candidateIdx = detecter->vote(img);
-    
-    // reuse detector's descriptor
-    for (int i = 0; i < threads.size(); i++) {
-        if (workers[i]->status == TraceWorker::BUSY) {
-            threads[i] = thread(&TraceWorker::trace, workers[i], std::ref(img), std::ref(detecter->getCrtKeypoints()), std::ref(detecter->getCrtDescriptors()));
-        }
+    if (this->imageDatabase->getSize() == 0) {
+        return;
     }
     
-    // wait for all tasks to finish
-    for (int i = 0; i < threads.size(); i++) {
-        if (threads[i].joinable()) {
-            threads[i].join();
-        }
-    }
-    if (needDetect) {
-        int candidateIdx = future.get();
-        needNewWorker = candidateIdx != -1;
+    if (Configuration::mode == Configuration::MODE::Extend) {
+        needNewWorker = false;
+        vector<std::thread> threads;
+        threads.resize(workers.size());
         
+        // first detect keypoints and descriptors
+        // TODO: make detect behind the worker to make convex test right
+        detecter->detect(img);
         
-        if (needNewWorker) {
-            startNewWorker(candidateIdx);
-            needDetect = false;
+        std::future<int> future;
+        //    detecter->vote(img);
+        if (needDetect) {
+            future = std::async(std::launch::async, &DetectWorker::vote, detecter, std::ref(img));
+        }
+        //    int candidateIdx = detecter->vote(img);
+        
+        // reuse detector's descriptor
+        for (int i = 0; i < threads.size(); i++) {
+            if (workers[i]->status == TraceWorker::BUSY) {
+                threads[i] = thread(&TraceWorker::trace, workers[i], std::ref(img), detecter);
+            }
+        }
+        
+        // wait for all tasks to finish
+        for (int i = 0; i < threads.size(); i++) {
+            if (threads[i].joinable()) {
+                threads[i].join();
+            }
+        }
+        if (needDetect) {
+            int candidateIdx = future.get();
+            needNewWorker = candidateIdx != -1;
+            
+            
+            if (needNewWorker) {
+                startNewWorker(candidateIdx);
+                needDetect = false;
+            }
+        } else {
+            needDetect = true;
         }
     } else {
-        needDetect = true;
+        if (indepWorkers.size() == 0) {
+            for (int i = 0; i < this->imageDatabase->getSize(); i++) {
+                indepWorkers.push_back(new IndepWorker(this, i));
+                hullMutex.push_back(new std::mutex);
+                hulls.push_back(ConvexHull());
+            }
+        }
+        vector<std::thread> threads;
+        threads.resize(indepWorkers.size());
+        
+        for (int i = 0; i < threads.size(); i++) {
+            threads[i] = thread(&IndepWorker::trace, indepWorkers[i], std::ref(img));
+        }
+        for (int i = 0; i < threads.size(); i++) {
+            if (threads[i].joinable()) {
+                threads[i].join();
+            }
+        }
     }
-    
 }
 
 void TraceManager::startNewWorker(int candidateIdx)
@@ -150,14 +179,14 @@ void TraceManager::startNewWorker(int candidateIdx)
     }
 }
 
-bool TraceManager::inConvex(const cv::Point2d &pt)
+int TraceManager::inConvex(const cv::Point2d &pt)
 {
     for (int i = 0; i < hulls.size(); ++i) {
         if (this->getHull(i).isInConvexHull(pt)) {
-            return true;
+            return i;
         }
     }
-    return false;
+    return -1;
 }
 
 const Camera* TraceManager::getRealCamera()

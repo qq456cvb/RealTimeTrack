@@ -18,6 +18,7 @@ TraceWorker::TraceWorker(TraceManager* manager, int id)
     reconstruction->SetUseTemporal(true);
     reconstruction->SetUsePrevFrameToInit(false);
     this->status = AVAILABLE;
+    extractor = ORB::create();
 }
 
 TraceWorker::~TraceWorker()
@@ -27,6 +28,9 @@ TraceWorker::~TraceWorker()
     }
     if (this->tracker) {
         delete this->tracker;
+    }
+    if (this->extractor.get()) {
+        this->extractor.release();
     }
 }
 
@@ -104,15 +108,8 @@ arma::mat TraceWorker::getMatches(const vector<cv::KeyPoint>& crtKeypoints, cons
     for(int i = 0; i < referenceKeypoints.size(); i++)
     {
         matches3D2D(i, arma::span(0,5)) = ref3DPoints.row(i);
-//        rowvec vids = matches3D2D(i, arma::span(0, 2));
-//        rowvec barys = matches3D2D(i, arma::span(3, 5));
-//        rowvec point3D = barys(0) * allPoints.row(vids(0)) + barys(1) * allPoints.row(vids(1)) + barys(2) * allPoints.row(vids(2));
-//        auto point2D = delegate->imageDatabase->getRefCamera().ProjectAPoint(point3D.t());
-//        cout << point2D << endl;
         matches3D2D(i, 6) = inputKeypoints[i].pt.x;
         matches3D2D(i, 7) = inputKeypoints[i].pt.y;
-//        cout << inputKeypoints[i].pt.x << " " << inputKeypoints[i].pt.y << endl;
-        // ID of the 3D point of the match
         matches3D2D(i, 8) = i;
     }
     if (referenceKeypoints.size() <= 0) {
@@ -127,7 +124,7 @@ arma::mat TraceWorker::getMatches(const vector<cv::KeyPoint>& crtKeypoints, cons
  *  @param crtKeypoints   current keypoints
  *  @param crtDescriptors current descriptors
  */
-void TraceWorker::trace(cv::Mat &img, const vector<cv::KeyPoint>& crtKeypoints, const cv::Mat& crtDescriptors)
+void TraceWorker::trace(cv::Mat &img, DetectWorker* detector)
 {
     static Timer timer;
     timer.start();
@@ -144,30 +141,41 @@ void TraceWorker::trace(cv::Mat &img, const vector<cv::KeyPoint>& crtKeypoints, 
     arma::mat matchesAll;
     if (crtFrame % detectInterval == 0) { // recompute
         vector<KeyPoint> validKeypoints;
-        validKeypoints.reserve(crtKeypoints.size());
-        cv::Mat validDescriptors(0, crtDescriptors.cols, crtDescriptors.type());
+        cv::Mat validDescriptors;
         if (crtFrame == 0) {
-            // init
-            for (int i = 0; i < crtKeypoints.size(); ++i) {
-                const Point2d& pt = crtKeypoints[i].pt;
-                if (delegate->inConvex(pt)) {
-                    continue;
-                }
-                validKeypoints.push_back(crtKeypoints[i]);
-                vconcat(validDescriptors, crtDescriptors.row(i), validDescriptors);
-            }
+            // avoid deep copy
+            validKeypoints = detector->getFreeKeypoints();
+//            validKeypoints.reserve(freeKeypoints.size());
+            // init, compute the descriptors
+//            for (int i = 0; i < freeKeypoints.size(); ++i) {
+//                const Point2d& pt = freeKeypoints[i].pt;
+//                if (delegate->inConvex(pt)) {
+//                    continue;
+//                }
+//                validKeypoints.push_back(freeKeypoints[i]);
+////                vconcat(validDescriptors, crtDescriptors.row(i), validDescriptors);
+//                
+//            }
+            extractor->compute(img, validKeypoints, validDescriptors);
         } else {
             // only track its own region
-            for (int i = 0; i < crtKeypoints.size(); ++i) {
-                const Point2d& pt = crtKeypoints[i].pt;
-                if (delegate->getHull(id).isInConvexHull(pt)) {
-                    validKeypoints.push_back(crtKeypoints[i]);
-                    vconcat(validDescriptors, crtDescriptors.row(i), validDescriptors);
-                }
-            }
+            validKeypoints = detector->getNonfreeKeypoints(id);
+//            for (int i = 0; i < crtKeypoints.size(); ++i) {
+//                const Point2d& pt = crtKeypoints[i].pt;
+//                if (delegate->getHull(id).isInConvexHull(pt)) {
+//                    validKeypoints.push_back(crtKeypoints[i]);
+//                    vconcat(validDescriptors, crtDescriptors.row(i), validDescriptors);
+//                }
+//            }
+            extractor->compute(img, validKeypoints, validDescriptors);
         }
-        notTrackedMatches = getMatches(validKeypoints, validDescriptors);
-        matchesAll = join_vert(notTrackedMatches, trackedMatches);
+        if (validKeypoints.size() > 0) {
+            notTrackedMatches = getMatches(validKeypoints, validDescriptors);
+            matchesAll = join_vert(notTrackedMatches, trackedMatches);
+        } else {
+            matchesAll = trackedMatches;
+        }
+        
     } else { // track mode
         matchesAll = trackedMatches;
     }
@@ -185,9 +193,9 @@ void TraceWorker::trace(cv::Mat &img, const vector<cv::KeyPoint>& crtKeypoints, 
 
     timer.start();
     reconstruction->ReconstructPlanarUnconstrOnce(matchesInlier, resMesh);
-//    matchesInlier = matchesInlier.rows(inlierMatchIdxs);
+////    matchesInlier = matchesInlier.rows(inlierMatchIdxs);
     timer.stop();
-//    
+//
 //    timer.start();
 //    reconstruction->ReconstructPlanarUnconstrIter(matchesAll, resMesh, inlierMatchIdxs);
 //    matchesInlier = matchesAll.rows(inlierMatchIdxs);

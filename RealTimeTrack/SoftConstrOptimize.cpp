@@ -46,7 +46,7 @@ void SoftConstrOptimize::takeAStepLagrange(arma::vec& x, SoftConstrFunction2D &o
     
     double err = 1e-6;
     
-    // I don't know why this also works...
+    // Lagrange multipliers, we compute the derivitives respect to dx to find maximum
     vec dx = LinearAlgebraUtils::LeastSquareSolve(trans(J)*J+lambda*trans(A)*A, -trans(J)*F-lambda*trans(A)*C, err);
     x = x + dx;
 }
@@ -59,12 +59,28 @@ void SoftConstrOptimize::takeAStepLagrange(arma::vec& x, SoftConstrFunction &obj
     const vec& C = objtFunction.C;
     const mat& A = objtFunction.A;
     
-    long long lambda = 8400;
+//    long long lambda = 8400;
+//
+    // gradient descent works a little bad, slowly converges.
+//    vec dx = trans(J)*F + trans(A)*C;
+//    double learningRate = 2e-7;
+//    x = x - learningRate * dx;
+    long long lambda = 8400 * 8400;
+    
+    double err = 1e-6;
+    
+    // Lagrange multipliers, we compute the derivitives respect to dx to find maximum
+    vec dx = LinearAlgebraUtils::LeastSquareSolve(trans(J)*J+lambda*trans(A)*A, -trans(J)*F-lambda*trans(A)*C, err);
+    x = x + dx;
+//    long long lambda = 8400 * 8400;
+//    
+//    double err = 1e-6;
+//    
+//    // I don't know why this also works...
+//    vec dx = LinearAlgebraUtils::LeastSquareSolve(trans(J)*J+lambda*trans(A)*A, -trans(J)*F-lambda*trans(A)*C, err);
+//    x = x + dx;
 
-    // gradient descent works well.
-    vec dx = trans(J)*F + lambda * lambda * trans(A)*C;
-    double learningRate = 1e-10;
-    x = x - learningRate * dx;
+    
 //    const mat& paramMat = refMesh.GetParamMatrix();
 //    // --------------- Eigen value decomposition --------------------------
 //    mat V;

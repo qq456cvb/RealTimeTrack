@@ -112,10 +112,10 @@ static const unsigned int DETECT_THRES = 100;
 //    cv::Mat ref;
 //    NSString* filePath = [[NSBundle mainBundle]
 //                              pathForResource:@"cloud" ofType:@"JPG"];
-////    UIImage* resImage = [UIImage imageWithContentsOfFile:filePath];
-////    UIImageToMat(resImage, ref, true);
+//    UIImage* resImage = [UIImage imageWithContentsOfFile:filePath];
+//    UIImageToMat(resImage, ref, true);
 //    ref = cv::imread([filePath UTF8String]);
-//    
+//
 //    ref = ref.t();
 //    flip(ref, ref, 1);
 //    cv::resize(ref, ref, cv::Size(640, 480));
@@ -126,9 +126,17 @@ static const unsigned int DETECT_THRES = 100;
 ////    cv::resize(ref, ref, cv::Size(480, 640));
 ////    ref = ref.t();
 ////    flip(ref, ref, 0);
-    TraceManager::imageDatabase->addImage(refImg);
+//    
 //    testImg = ref;
 //    _imageView.image = MatToUIImage(ref);
+    TraceManager::imageDatabase->addImage(refImg);
+//    Timer t;
+//    t.start();
+//    for (int i = 0; i < 25; i++) {
+//        TraceManager::imageDatabase->addImage(ref);
+//    }
+//    t.stop();
+//    cout << "database cost " << t.getElapsedTimeInMilliSec() << endl;
 }
 
 - (void)viewDidLoad {
@@ -177,9 +185,9 @@ static const unsigned int DETECT_THRES = 100;
     }
     
     image = traceManager->outputImg;
-    if (!testImg.empty()) {
-        image = testImg;
-    }
+//    if (!testImg.empty()) {
+//        image = testImg;
+//    }
 }
 
 - (void)didReceiveMemoryWarning {

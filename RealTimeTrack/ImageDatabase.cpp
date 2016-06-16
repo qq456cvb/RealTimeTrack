@@ -41,6 +41,7 @@ void ImageDatabase::addImage(const cv::Mat &image)
     cv::Mat objectDescriptors;
     extractor->compute(image, strongestKeyPoints, objectDescriptors);
     
+//    assert(objectDescriptors.isContinuous());
     descriptors.push_back(objectDescriptors);
     
     cout << "keypoint size: " << keypoints[keypoints.size()-1].size() << endl;

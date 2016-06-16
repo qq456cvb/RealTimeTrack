@@ -20,28 +20,39 @@ vector<cv::Point> keypointToPoint(const vector<KeyPoint>& kpts)
     return result;
 }
 
-cv::Mat concatDescriptors(const std::vector<cv::Mat>& descriptors)
+cv::Mat* concatDescriptors(const std::vector<cv::Mat>& descriptors)
 {
-    cv::Mat result;
+    cv::Mat* result = NULL;
     if (descriptors.size() == 0) {
         return result;
     }
-    result = cv::Mat(0, descriptors[0].cols, descriptors[0].type());
+    result = new cv::Mat(0, descriptors[0].cols, descriptors[0].type());
     for (int i = 0; i < descriptors.size(); ++i) {
-        vconcat(result, descriptors[i], result);
+        vconcat(*result, descriptors[i], *result);
     }
     return result;
 }
 
 DetectWorker::DetectWorker(TraceManager* manager) {
     this->delegate = manager;
+    databaseDesc = nullptr;
 }
 
+DetectWorker::~DetectWorker()
+{
+    if (this->extractor.get()) {
+        extractor.release();
+    }
+    if (this->databaseDesc) {
+        delete databaseDesc;
+        databaseDesc = nullptr;
+    }
+}
 
 void DetectWorker::detect(cv::Mat &img)
 {
     if (!extractor.get()) {
-        extractor = ORB::create(inputKeypointSize);
+        extractor = ORB::create();
     }
     vector<KeyPoint> rawKeypoints;
     extractor->detect(img, rawKeypoints);
@@ -49,13 +60,37 @@ void DetectWorker::detect(cv::Mat &img)
         return p1.response > p2.response;
     });
     
-    if (rawKeypoints.size() < inputKeypointSize) {
-        crtKeypoints = rawKeypoints;
-    } else {
-        crtKeypoints = vector<KeyPoint>(rawKeypoints.begin(), rawKeypoints.begin()+inputKeypointSize);
+    nonfreeKeypoints.clear();
+    freeKeypoints.clear();
+    nonfreeKeypoints.resize(delegate->hulls.size());
+    freeKeypoints.reserve(rawKeypoints.size());
+    for (int i = 0; i < rawKeypoints.size(); i++) {
+        int id = delegate->inConvex(rawKeypoints[i].pt);
+        if (id != -1) {
+            if (nonfreeKeypoints[id].size() < inputKeypointSize) {
+                nonfreeKeypoints[id].push_back(rawKeypoints[i]);
+            }
+            
+        } else {
+            if (freeKeypoints.size() < inputKeypointSize) {
+                freeKeypoints.push_back(rawKeypoints[i]);
+            }
+        }
     }
-    extractor->compute(img, crtKeypoints, crtDescriptors);
-    {
+//    if (freeKeypoints.size() > inputKeypointSize) {
+//        freeKeypoints.erase(freeKeypoints.begin() + inputKeypointSize, freeKeypoints.end());
+//    }
+//    if (rawKeypoints.size() < inputKeypointSize) {
+//        crtKeypoints = rawKeypoints;
+//    } else {
+//        crtKeypoints = vector<KeyPoint>(rawKeypoints.begin(), rawKeypoints.begin()+inputKeypointSize);
+//    }
+//    extractor->compute(img, crtKeypoints, crtDescriptors);
+//    while (!crtDescriptors.isContinuous()) {
+//        crtDescriptors = crtDescriptors.clone();
+//    }
+//    assert(crtDescriptors.isContinuous());
+//    {
 //        std::unique_lock<std::mutex> lock(delegate->shared_mutex);
 //        for (unsigned int i = 0; i < crtKeypoints.size(); i++)
 //        {		// Convert to opencv Point object
@@ -63,24 +98,35 @@ void DetectWorker::detect(cv::Mat &img)
 //            
 //            cv::circle(img, crtKeypoints[i].pt, radius, Scalar::all(200), -1);	// -1 mean filled circle
 //        }
-    }
+//    }
 }
 
 int DetectWorker::vote(cv::Mat &image)
 {
-    static Timer timer;
+    Timer timer;
     timer.start();
-    cv::flann::Index flannIndex(concatDescriptors(TraceManager::imageDatabase->getAllDescriptors()), cv::flann::LshIndexParams(12, 20, 2), cvflann::FLANN_DIST_HAMMING);
-    
-    
+//    std::shared_ptr<cv::flann::Index> flannIndex = std::make_shared<cv::flann::Index>(concatDescriptors(TraceManager::imageDatabase->getAllDescriptors()), cv::flann::LshIndexParams(12, 20, 2), cvflann::FLANN_DIST_HAMMING);
+//    auto desc = getCrtDescriptors().clone();
+    if (databaseDesc == nullptr) {
+        databaseDesc = concatDescriptors(TraceManager::imageDatabase->getAllDescriptors());
+    }
+    cv::flann::Index flannIndex(*databaseDesc, cv::flann::LshIndexParams(12, 20, 2), cvflann::FLANN_DIST_HAMMING);
+//    const std::vector<cv::Mat>& bigMat = TraceManager::imageDatabase->getAllDescriptors();
+//    cv::Mat test;
+//    test = cv::Mat(0, bigMat[0].cols, bigMat[0].type());
+//    for (int i = 0; i < bigMat.size(); ++i) {
+//        vconcat(test, bigMat[i], test);
+//    }
+//    FlannBasedMatcher matcher;
+//    std::vector< DMatch > matches;
+//    matcher.match( bigMat, getCrtDescriptors(), matches );
     assert(extractor.get());
     int result = -1;
     const ImageDatabase* database = delegate->imageDatabase;
-    const vector<vector<KeyPoint>>& databaseKeypoints = database->getAllKeypoints();
+//    const vector<vector<KeyPoint>>& databaseKeypoints = database->getAllKeypoints();
     vector<int> votes;
     
-    const std::vector<cv::KeyPoint>& sceneKeypoints = getCrtKeypoints();
-    const cv::Mat& sceneDescriptors = getCrtDescriptors();
+    extractor->compute(image, freeKeypoints, crtFreeDescriptors);
     cv::Mat results;
     cv::Mat dists;
     
@@ -89,7 +135,7 @@ int DetectWorker::vote(cv::Mat &image)
     for (int i = 0; i < votes.size(); i++) {
         votes[i] = 0;
     }
-    flannIndex.knnSearch(sceneDescriptors, results, dists, 2, cv::flann::SearchParams());
+    flannIndex.knnSearch(crtFreeDescriptors, results, dists, 2, cv::flann::SearchParams());
     
     vector<vector<cv::KeyPoint>> inputGroupKeypoints(dataSize);
     auto acc = TraceManager::imageDatabase->getAccumulates();
@@ -97,9 +143,9 @@ int DetectWorker::vote(cv::Mat &image)
     float nndrRatio = 0.8f;
     
     
-    for (int i = 0; i < sceneDescriptors.rows; ++i)
+    for (int i = 0; i < crtFreeDescriptors.rows; ++i)
     {
-        if (delegate->inConvex(sceneKeypoints[i].pt)) {
+        if (delegate->inConvex(freeKeypoints[i].pt) != -1) {
 //            std::unique_lock<std::mutex> lock(delegate->shared_mutex);
 //            cv::circle(delegate->outputImg, sceneKeypoints[i].pt, 2, Scalar(255, 0, 0), -1);	// -1 mean filled circle
             continue;
@@ -117,7 +163,7 @@ int DetectWorker::vote(cv::Mat &image)
                 if (indice >= acc[j] && indice < acc[j+1])
                 {
                     votes[j]++;
-                    inputGroupKeypoints[j].push_back(sceneKeypoints[i]);
+                    inputGroupKeypoints[j].push_back(freeKeypoints[i]);
                     break;
                 }
             }
@@ -137,7 +183,11 @@ int DetectWorker::vote(cv::Mat &image)
     }
     
     timer.stop();
-//    cout << "Detect cost " << timer.getElapsedTimeInMilliSec() << " ms\n";
+//    static int cnt = 0;
+//    static double averageTime = 0;
+//    averageTime = (cnt*averageTime + timer.getElapsedTimeInMilliSec()) / (cnt+1);
+//    cnt++;
+//    cout << "average time " << cnt << " :" << averageTime << " ms\n";
     return result;
 }
 

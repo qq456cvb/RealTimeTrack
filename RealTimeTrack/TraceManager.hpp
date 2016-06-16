@@ -20,6 +20,7 @@
 #include "TraceWorker.hpp"
 #include "DetectWorker.hpp"
 #include "ImageDatabase.hpp"
+#include "IndepWorker.hpp"
 #include <opencv2/opencv.hpp>
 #include <armadillo/armadillo>
 #include <future>
@@ -42,6 +43,7 @@ class TraceManager {
     const Camera* realCamera;
     
     vector<TraceWorker*> workers;
+    vector<IndepWorker*> indepWorkers;
     DetectWorker* detecter;
     
     vector<std::mutex*> hullMutex;
@@ -59,7 +61,7 @@ public:
     void startNewWorker(int candidateIdx);
     void feed(cv::Mat& img);
     void update();
-    bool inConvex(const cv::Point2d& pt);
+    int inConvex(const cv::Point2d& pt);
     
     const Camera* getRealCamera();
     const LaplacianMesh* getRefMesh();

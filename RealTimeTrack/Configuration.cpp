@@ -8,4 +8,6 @@
 
 #include "Configuration.hpp"
 
-bool Configuration::enableDeformTracking = false;
+bool Configuration::enableDeformTracking = true;
+
+Configuration::MODE Configuration::mode = Configuration::MODE::Extend;

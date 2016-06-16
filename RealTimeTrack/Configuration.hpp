@@ -13,7 +13,13 @@
 class Configuration {
     
 public:
+    enum MODE {
+        Default, // quick tracking
+        Extend // allow same object tracking, but hitting performance
+    };
+    
     static bool enableDeformTracking;
+    static MODE mode;
 };
 
 #endif /* Configuration_hpp */

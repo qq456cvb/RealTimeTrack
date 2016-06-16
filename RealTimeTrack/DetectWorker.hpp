@@ -22,26 +22,42 @@ class DetectWorker {
     TraceManager* delegate;
     Ptr<ORB> extractor;
     
-    std::vector<KeyPoint> crtKeypoints;
-    cv::Mat crtDescriptors;
+    // those in convex
+    std::vector<std::vector<KeyPoint>> nonfreeKeypoints;
+    
+    // not inconvex
+    std::vector<KeyPoint> freeKeypoints;
+    cv::Mat* databaseDesc;
+    cv::Mat crtFreeDescriptors;
     const int inputKeypointSize = 1000;
-    const int THRESHOLD = 150;
+    const int THRESHOLD = 100;
     
 public:
     DetectWorker(TraceManager* manager);
-    const std::vector<KeyPoint>& getCrtKeypoints() {
-        return crtKeypoints;
+    ~DetectWorker();
+    const std::vector<KeyPoint>& getNonfreeKeypoints(int idx) {
+        return nonfreeKeypoints[idx];
     };
-    const cv::Mat& getCrtDescriptors() {
-        return crtDescriptors;
+    const cv::Mat& getFreeDescriptors() {
+        return crtFreeDescriptors;
+    };
+    
+    const std::vector<KeyPoint>& getFreeKeypoints() {
+        return freeKeypoints;
     };
     
     /**
-     *  detect, -1 if no candidate, else return candidate index in database
+     *  vote, -1 if no candidate, else return candidate index in database
      *
      *  @param img current image
      */
     int vote(cv::Mat& img);
+    
+    /**
+     *  assign feature points to its own regions
+     *
+     *  @param img current image
+     */
     void detect(cv::Mat& img);
 };
 #endif /* DetectWorker_hpp */
