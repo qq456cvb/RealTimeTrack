@@ -23,3 +23,7 @@ For more info, see [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2)
 - MODE has two values
   - Default can track different objects and is faster
   - Extend can track identical objects but loses performance
+
+# Unity Plugin
+I also export a unity plugin package for this code so that it can be used in Unity.
+You can download it from [here](http://youyangsoft.com/AR.unitypackage)
