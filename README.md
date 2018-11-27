@@ -16,7 +16,7 @@ You can either compile the src file or build a framework for g2o or DBoW2.
 For more info, see [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2)
 
 # Paper
-removed
+https://drive.google.com/file/d/1mWTg5Xi5SJ2mz79aNWQ_DMTrFaKESyEq/view?usp=sharing
 
 # Configurations
 - enableDeformTracking will build up a soft plane but hurt performance
