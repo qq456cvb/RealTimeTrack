@@ -1,65 +1,35 @@
 # RealTimeTrack
 
-<!-- README refined by Cursor -->
+An iOS app that detects and tracks multiple **deformable planar surfaces** (paper sheets, posters, cloth) in real time — above 30 FPS on-device. Built as my graduation design project.
 
-A fast algorithm tracking real time deformable planers
+[![video](http://img.youtube.com/vi/8OSTpl4fAJ0/0.jpg)](https://www.youtube.com/watch?v=8OSTpl4fAJ0)
 
-## Overview
+## How It Works
 
-This repository contains C++, Objective-C++, MATLAB/Objective-C, C/C++ code from an older research, course, or prototype project. The README has been refreshed to make the repository easier to scan while preserving the original notes below.
+The pipeline combines wide-baseline detection with frame-to-frame tracking, running each tracked target on its own worker thread:
 
-## Repository Contents
+- **Detection** (`DetectWorker`): candidate targets are recognized with BRISK/ORB keypoint matching against registered template images (`KeypointMatcher3D2D` and variants); an `ImageDatabase` built on [DBoW2](https://github.com/dorian3d/DBoW2) provides fast image retrieval.
+- **Tracking** (`TraceWorker` / `IndepWorker`, orchestrated by `TraceManager`): matched keypoints are followed with Lucas-Kanade optical flow (`LKPointTracker`) and filtered by `InlierMatchTracker`, so each target keeps tracking without re-detection.
+- **Deformable reconstruction**: the planar template is modeled as a Laplacian triangle mesh (`LaplacianMesh`, `TriangleMesh`) whose 3D shape is recovered every frame by constrained linear least-squares (`SoftConstrOptimize`, `EqualConstrOptimize`, `IneqConstrOptimize`) using [Armadillo](http://arma.sourceforge.net/) (an iOS build is bundled).
+- **Relocalization (WIP)**: `Src/` contains an [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2) port (with bundled g2o and DBoW2) intended to predict the object pose when tracking is lost; the integration was never finished.
 
-- `RealTimeTrack/`
-- `RealTimeTrack.xcodeproj/`
-- `RealTimeTrackTests/`
-- `RealTimeTrackUITests/`
+## Requirements
 
-## Setup
-
-- Open the `.xcodeproj` project in Xcode for iOS/macOS builds.
+- Xcode (the repo is a complete `RealTimeTrack.xcodeproj` iOS project)
+- OpenCV 3+ for iOS (`opencv2.framework`)
+- Armadillo — already included (`armadillo.framework` / `libarmadillo-ios.a`)
 
 ## Usage
 
-- inspect the source directories listed below; many of these older repos were kept as research prototypes rather than packaged applications.
+Open `RealTimeTrack.xcodeproj` in Xcode, add `opencv2.framework`, and run on a device. Register a template by pointing the camera at the target and capturing it (see `ImageChoose` / `ViewController`), then the app detects and tracks it live.
 
-## Data and Artifacts
+### Configuration (`Configuration.hpp`)
 
-No new large artifact is stored in this repository. If a dataset or checkpoint is required, follow the links and notes in the original section below.
+- `enableDeformTracking` — reconstructs the deforming 3D mesh of the surface (softer, more expensive); disable for rigid planar tracking.
+- `mode`:
+  - `Default` — tracks multiple *different* objects, fastest.
+  - `Extend` — also tracks multiple *identical* objects, at some performance cost.
 
-## Status
+## Unity Plugin
 
-This is a `Batch B` cleanup pass for a legacy repository. Commands may require dependency/version adjustments on a modern machine.
-
-## License
-
-No explicit license file was found in this checkout; check the original project context before reusing code.
-
-## Original Notes
-
-# RealTimeTrack
-A fast algorithm tracking real time deformable planers.
-
-This is part of my graduation design. It can track multiple images at the same time at a FPS above 30.
-
-# Demo
-[![video](http://img.youtube.com/vi/8OSTpl4fAJ0/0.jpg)](https://www.youtube.com/watch?v=8OSTpl4fAJ0)
-# Requirements
-- libarmadillo, already included
-- opencv 3+ for iOS
-
-# TODO
-I try to add ORB-SLAM into it to be able to predict the object when lost, while not finished yet. 
-If you'd like to use it and have a try, please include g2o and DBoW2 for iOS. 
-You can either compile the src file or build a framework for g2o or DBoW2.
-For more info, see [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2)
-
-# Configurations
-- enableDeformTracking will build up a soft plane but hurt performance
-- MODE has two values
-  - Default can track different objects and is faster
-  - Extend can track identical objects but loses performance
-
-# Unity Plugin
-I also export a unity plugin package for this code so that it can be used in Unity.
-You can download it from [here](http://youyangsoft.com/AR.unitypackage)
+A Unity plugin export of this tracker is available [here](http://youyangsoft.com/AR.unitypackage).
