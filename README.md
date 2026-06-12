@@ -1,6 +1,6 @@
 # RealTimeTrack
 
-An iOS app that detects and tracks multiple **deformable planar surfaces** (paper sheets, posters, cloth) in real time — above 30 FPS on-device. Built as my graduation design project.
+An iOS app that detects and tracks multiple **deformable planar surfaces** (paper sheets, posters, cloth) in real time — above 30 FPS on-device. Built as my undergraduate thesis project.
 
 [![video](http://img.youtube.com/vi/8OSTpl4fAJ0/0.jpg)](https://www.youtube.com/watch?v=8OSTpl4fAJ0)
 
